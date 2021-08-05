@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('show-content.anime.index');
 });
 
+Route::get('/createanime', function () {
+    return view('show-content.anime.create');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

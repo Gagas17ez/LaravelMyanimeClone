@@ -1724,6 +1724,7 @@ ol {
 .login__form {
 	position: relative;
 	padding-left: 145px;
+	border: none;
 }
 
 .login__form:after {
