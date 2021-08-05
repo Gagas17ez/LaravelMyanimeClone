@@ -17,6 +17,12 @@ class CreateAnimeTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->longText('sinopsis');
+            $table->string('type');
+            $table->integer('episode_count');
+            $table->string('status');
+            $table->date('aired_date');
+            $table->string('producer');
+            $table->string('studio');
             $table->string('video_link', 100)->nullable();
             $table->integer('rating')->nullable();
             $table->string('poster');

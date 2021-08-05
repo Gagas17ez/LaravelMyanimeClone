@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGenreIdAndAnimeinfoIdToAnimeTable extends Migration
+class AddGenreIdToAnimeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,10 +16,6 @@ class AddGenreIdAndAnimeinfoIdToAnimeTable extends Migration
         Schema::table('anime', function (Blueprint $table) {
             $table->unsignedBigInteger('genre_id');
             $table->foreign('genre_id')->references('id')->on('genre');
-            
-            $table->unsignedBigInteger('animeinfo_id');
-            $table->foreign('animeinfo_id')->references('id')->on('animeinfo');
-
         });
     }
 
@@ -31,11 +27,8 @@ class AddGenreIdAndAnimeinfoIdToAnimeTable extends Migration
     public function down()
     {
         Schema::table('anime', function (Blueprint $table) {
-            $table->dropForeign(['genre_id']);
-            $table->dropForeign(['animeinfo_id']);
+            $table->dropForeign(['genre_id']);            
             $table->dropColumn(['genre_id']);
-            $table->dropColumn(['animeinfo_id']);
-
         });
     }
 }
