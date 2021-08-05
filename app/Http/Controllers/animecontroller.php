@@ -41,7 +41,7 @@ class animecontroller extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required|unique:cast',
+            'judul' => 'required|unique:anime',
             'sinopsis' => 'required',
             'video_link' =>  'required',
             'poster' =>  'required|mimes:jpeg,jpg,png|max:2200',
