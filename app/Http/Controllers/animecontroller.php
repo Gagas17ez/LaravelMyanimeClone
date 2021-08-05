@@ -42,6 +42,12 @@ class animecontroller extends Controller
         $this->validate($request, [
             'judul' => 'required|unique:anime',
             'sinopsis' => 'required',
+            'type' => 'required',
+            'episode_count' => 'required',
+            'status' => 'required',
+            'aired_date' => 'required',
+            'producer' => 'required',
+            'studio' => 'required',
             'video_link' =>  'required',
             'poster' =>  'required|mimes:jpeg,jpg,png|max:2200',
             'genre_id' =>  'required'
@@ -53,6 +59,12 @@ class animecontroller extends Controller
         $anime = anime::create([
             "judul" => $request->judul,
             "sinopsis" => $request->sinopsis,
+            "type" => $request->type,
+            "episode_count" => $request->episode_count,
+            "status" => $request->status,
+            "aired_date" => $request->aired_date,
+            "producer" => $request->producer,
+            "studio" => $request->studio,
             "video_link" => $request->video_link,
             "genre_id" => $request->genre_id,
             "poster" => $new_poster,
@@ -97,8 +109,14 @@ class animecontroller extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul' => 'required|unique:cast',
+            'judul' => 'required|unique:anime',
             'sinopsis' => 'required',
+            'type' => 'required',
+            'episode_count' => 'required',
+            'status' => 'required',
+            'aired_date' => 'required',
+            'producer' => 'required',
+            'studio' => 'required',
             'video_link' =>  'required',
             'poster' =>  'required|mimes:jpeg,jpg,png|max:2200',
             'genre_id' =>  'required'
@@ -113,24 +131,37 @@ class animecontroller extends Controller
             $new_poster = time() . ' - ' . $poster->getClientOriginalName();
             $poster->move('/poster', $new_poster);
             $post_data = [
-            "judul" => $request->judul,
-            "sinopsis" => $request->sinopsis,
-            "video_link" => $request->video_link,
-            "genre_id" => $request->genre_id,
-            "poster" => $new_poster,
+                "judul" => $request->judul,
+                "sinopsis" => $request->sinopsis,
+                "type" => $request->type,
+                "episode_count" => $request->episode_count,
+                "status" => $request->status,
+                "aired_date" => $request->aired_date,
+                "producer" => $request->producer,
+                "studio" => $request->studio,
+                "video_link" => $request->video_link,
+                "genre_id" => $request->genre_id,
+                "poster" => $new_poster,
         ]; 
         
         }else{
             $post_data = [
                 "judul" => $request->judul,
                 "sinopsis" => $request->sinopsis,
+                "type" => $request->type,
+                "episode_count" => $request->episode_count,
+                "status" => $request->status,
+                "aired_date" => $request->aired_date,
+                "producer" => $request->producer,
+                "studio" => $request->studio,
                 "video_link" => $request->video_link,
                 "genre_id" => $request->genre_id,
+                "poster" => $new_poster,
             ];
         }
 
         $anime->update($post_data);
-        return redirect('/embuh');
+        return redirect('\embuh');
     }
 
     /**
