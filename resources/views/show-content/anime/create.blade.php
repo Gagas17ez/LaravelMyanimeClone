@@ -22,7 +22,7 @@
             <div class="col-lg-12">
                 <div class="login__form">
                     <h3>Create Anime:</h3>
-                    <form role="#" action="/#" method="POST" enctype="multipart/form-data">
+                    <form role="{{route('anime.store')}}" action="/" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="inputJudul3" class="col-sm-2 col-form-label text-white">Judul:</label>
@@ -134,6 +134,7 @@
                             </div>                
                         </div>
                         <button class="btn btn-info"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
+                    </form>
                 </div>
             </div>
 
