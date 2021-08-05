@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\anime;
 use App\genre;
-use App\animeinfo;
 use File;
 
 class animecontroller extends Controller
