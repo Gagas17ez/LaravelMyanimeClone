@@ -1,4 +1,4 @@
-<!-- Js Plugins -->
+
 <script src="{{asset('template.anime/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('template.anime/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('template.anime/js/player.js')}}"></script>
