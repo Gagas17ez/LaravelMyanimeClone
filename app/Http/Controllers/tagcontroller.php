@@ -53,9 +53,9 @@ class tagcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //nampilno anime sesuai tags e
     {
-        //gabutuh cok lakok isine id mbek genre siji tok gabut a
+        
     }
 
     /**
