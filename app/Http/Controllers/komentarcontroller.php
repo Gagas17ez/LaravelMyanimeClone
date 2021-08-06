@@ -34,7 +34,7 @@ class komentarcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'komentar' => 'required',
             'rating' => 'required',
         ]);

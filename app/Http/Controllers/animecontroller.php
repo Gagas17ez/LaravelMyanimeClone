@@ -18,7 +18,8 @@ class animecontroller extends Controller
     public function index()
     {   
         $listanime = DB::table('anime')->get();
-        return view('show-content.anime.index', compact('listanime'));
+        $listgenre = DB::table('genre')->get();
+        return view('show-content.anime.index', compact('listanime', 'listgenre'));
     }
 
     /**
