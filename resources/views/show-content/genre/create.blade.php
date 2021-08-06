@@ -26,7 +26,7 @@
                         <div class="form-group row">
                             <label for="inputJudul3" class="col-sm-2 col-form-label text-white">genre :</label>
                             <div class="col-sm-10 inputitem">
-                                <input type="text" class="form-control" id="genre" name="genre" placeholder="Judul" >
+                                <input type="text" class="form-control" id="genre" name="genre" placeholder="genre" >
                                 @error('genre')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -41,3 +41,4 @@
         </div>
     </div>
 </section>
+@endsection

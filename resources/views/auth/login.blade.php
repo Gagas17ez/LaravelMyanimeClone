@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+<section class=" spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="login__form">
+                    <h3>Login to an existing account</h3>
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -70,4 +72,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

@@ -19,7 +19,10 @@ class animecontroller extends Controller
     {   
         $listanime = DB::table('anime')->get();
         $listgenre = DB::table('genre')->get();
-        return view('show-content.anime.index', compact('listanime', 'listgenre'));
+        $listanimeterbaru = DB::select('select * from anime inner join genre on genre_id = genre.id order by aired_date desc limit 3'); 
+        //dd($listanimeterbaru);
+        $short = 'poster/';
+        return view('show-content.anime.index', compact('listanime', 'listgenre', 'listanimeterbaru', 'short'));
     }
 
     /**

@@ -12,9 +12,17 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
+                        <script>
+                            function hideAlert(){
+                                window.location.href = "/anime";
+                            }
+                            setTimeout("hideAlert()", 2000);
+                        </script>
+                        
                     @endif
 
                     You are logged in!
+                    <a href="/anime">Click here go to the animelist!</a>
                 </div>
             </div>
         </div>
