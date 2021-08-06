@@ -4,8 +4,9 @@
 <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
     <ul class="dropdown">
         @foreach ($listgenre as $genre)
-        <li href></li>    
+        <li value="{{$genre->id}}">{{$genre->genre}}</li>    
         @endforeach
+        
     </ul>
 </li>
 @endsection
