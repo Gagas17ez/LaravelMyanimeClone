@@ -13,9 +13,12 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="./index.html">Homepage</a></li>
+                            <li><a href="#" class="search-switch">Search</a></li>
                             <li><a href="./categories.html">Genres <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                    <!--foreach genres-->
+                                    @foreach ($listgenre as $genre)
+                                    <li href></li>    
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
@@ -24,9 +27,34 @@
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                    @auth
                     <a href="./login.html"><span class="icon_profile"></span></a>
-                    <p><!--masukkan username disini--></p>
+                    @endauth
+                    @guest
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                        @if (Route::has('login'))
+                        <a href="{{ route('login') }}">Login</a>
+                        @endif
+                    @endauth
+                    
+                    
+
+                    {{-- @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                        <a href="{{ route('login') }}">Login</a>
+
+                    @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth 
+                    </div>
+                     @endif
+                    <p><!--masukkan username disini--></p>--}}
                 </div>
             </div>
         </div>

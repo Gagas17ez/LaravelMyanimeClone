@@ -114,22 +114,22 @@
                             </div>                
                         </div>
 
+
                         <div class="form-group row">
                             <label for="inputVideolink3" class="col-sm-2 col-form-label text-white">Genre :</label>
-                            <div class="col-sm-10 input__item">
+                            <div class="col-sm-10">
                                 <select class="custom-select" id="genre_id" name="genre_id">
                                     <option value="">--Silakan Pilih--</option>
                                     @foreach ($listgenre as $genre)
                                     <option value="{{$genre->id}}">{{$genre->genre}}</option>    
                                     @endforeach
-                            
                                     @error('genre')
                                     <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                                    @enderror
+                                </select>
                             </div>                
                         </div>
-                    
-                        
+
                         <div class="form-group row">
                             <label for="inputPoster3" class="col-sm-2 col-form-label text-white">Poster:</label>
                             <div class="col-sm-10 input__item">
@@ -139,6 +139,9 @@
                                 @enderror
                             </div>                
                         </div>
+                    
+                        
+                        
                         <button class="btn btn-info"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
                     </form>
                 </div>

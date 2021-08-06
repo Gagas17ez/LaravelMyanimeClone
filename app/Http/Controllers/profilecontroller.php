@@ -38,7 +38,7 @@ class profilecontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_tlp' => 'required',
+            'no_tlp' => 'required|alpha_num',
             'tgl_lahir' => 'required',
             'tempat_lahir' => 'required',
             'bio' => 'required',

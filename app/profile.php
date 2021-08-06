@@ -10,6 +10,6 @@ class profile extends Model
     protected $fillable = ['no_tlp', 'tgl_lahir', 'tempat_lahir	' , 'bio', 'profile_pic', 'user_id'];
 
     public function user(){
-        return $this->belongsTo['App\User'];
+        return $this->belongsTo('App\User', 'user_id');
     }
 }
