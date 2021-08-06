@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/createanime', function () {
-    return view('show-content.anime.create');
+    return view('');
 });
 
 Auth::routes();
@@ -24,4 +24,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('anime', 'animecontroller');
-Route::resource('tag', 'tagcontroller');
+Route::resource('genre', 'genrecontroller');

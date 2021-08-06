@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\anime;
 use App\genre;
 use File;
+use DB;
 
 class animecontroller extends Controller
 {
@@ -16,7 +17,7 @@ class animecontroller extends Controller
      */
     public function index()
     {   
-        $listanime = anime::all();
+        $listanime = DB::table('anime')->get();
         return view('emboh.index', compact('listanime'));
     }
 
@@ -27,8 +28,8 @@ class animecontroller extends Controller
      */
     public function create()
     {
-        $listgenre = genre::all();
-        return view('emboh.create',compact('listgenre'));
+        $listgenre = DB::table('genre')->get();
+        return view('show-content.anime.create',compact('listgenre'));
     }
 
     /**
@@ -39,8 +40,8 @@ class animecontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'judul' => 'required|unique:anime',
+        $request->validate([
+            'judul' => 'required',
             'sinopsis' => 'required',
             'type' => 'required',
             'episode_count' => 'required',
@@ -53,25 +54,25 @@ class animecontroller extends Controller
             'genre_id' =>  'required'
         ]);
 
-        $poster = $request->poster;
+        $poster = $request["poster"];
         $new_poster = time() . ' - ' . $poster->getClientOriginalName();
         
-        $anime = anime::create([
-            "judul" => $request->judul,
-            "sinopsis" => $request->sinopsis,
-            "type" => $request->type,
-            "episode_count" => $request->episode_count,
-            "status" => $request->status,
-            "aired_date" => $request->aired_date,
-            "producer" => $request->producer,
-            "studio" => $request->studio,
-            "video_link" => $request->video_link,
-            "genre_id" => $request->genre_id,
-            "poster" => $new_poster,
+        $query = DB::table('anime')->insert([
+            "judul" => $request["judul"],
+            "sinopsis" => $request["sinopsis"],
+            "type" => $request["type"],
+            "episode_count" => $request["episode_count"],
+            "status" => $request["status"],
+            "aired_date" => $request["aired_date"],
+            "producer" => $request["producer"],
+            "studio" => $request["studio"],
+            "video_link" => $request["video_link"],
+            "genre_id" => $request["genre_id"],
+            "poster" => $new_poster
         ]); 
 
-        $poster->move('/poster', $new_poster);
-        return redirect('emboh opo ken');
+        $poster->move('poster', $new_poster);
+        return redirect('/home');
     }
 
     /**

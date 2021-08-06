@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\anime;
-use App\tag;
+use App\genre;
+use DB;
+use Illuminate\Http\Request;
 
-class tagcontroller extends Controller
+class genrecontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class tagcontroller extends Controller
      */
     public function create()
     {
-        return view('emboh.create');
+        return view('show-content.genre.create');
     }
 
     /**
@@ -37,14 +37,14 @@ class tagcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'genre' => 'required|unique:genre'
+        $request->validate([
+            'genre' => 'required'
         ]);
 
-        $genre = genre::create([
-            "genre" => $request->genre,
-        ]); 
-        return redirect('emboh opo ken');
+        $query = DB::table('genre')->insert([
+            "genre" => $request["genre"]
+        ]);
+        return redirect('/home');
     }
 
     /**
