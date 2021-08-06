@@ -39,7 +39,7 @@ class komentarcontroller extends Controller
             'rating' => 'required',
         ]);
 
-        $komentar = komentar::create([
+        $query = DB::table('komentar')->insert([
             "komentar" => $request->komentar,
             "rating" => $request->rating,
             "user_idkomen" => Auth::user()->id,
@@ -68,7 +68,19 @@ class komentarcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $request->validate([
+            'komentar' => 'required',
+            'rating' => 'required',
+        ]);
+
+        $genre = DB::table('komentar')->where('id', $id)->first();
+        $query = DB::table('komentar')
+                    ->where('id', $id)
+                    ->update([
+                        "komentar" => $request["komentar"],
+                        "rating" => $request["rating"]          
+        ]); 
+        return redirect('/embuhken');
     }
 
     /**
@@ -91,6 +103,8 @@ class komentarcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $komen = DB::table('komentar')->where('id', $id)->first();
+        $komen->delete();
+        return redirect()->route('/home');
     }
 }

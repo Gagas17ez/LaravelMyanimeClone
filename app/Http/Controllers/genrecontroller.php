@@ -81,8 +81,8 @@ class genrecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'genre' => 'required|unique:genre'
+        $request->validate([
+            'genre' => 'required'
         ]);
 
         $genre = DB::table('genre')->where('id', $id)->first();
