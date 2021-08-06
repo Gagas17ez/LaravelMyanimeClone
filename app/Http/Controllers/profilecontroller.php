@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\profile;
-use Auth;
+use DB;
+use File;
 
 class profilecontroller extends Controller
 {
@@ -15,8 +16,7 @@ class profilecontroller extends Controller
      */
     public function index()
     {
-        $profile = profile::where('user_id', Auth::users()->id)->first();
-        return view('emboh.index', compact('profile'));
+        //
     }
 
     /**
@@ -26,7 +26,7 @@ class profilecontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('show-content.profile.create');
     }
 
     /**
@@ -37,29 +37,28 @@ class profilecontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'no_tlp' => 'required',
             'tgl_lahir' => 'required',
             'tempat_lahir' => 'required',
             'bio' => 'required',
-            'profile_pic' =>  'required|mimes:jpeg,jpg,png|max:2200',
-
+            'profile_pic' => 'required|mimes:jpeg,jpg,png|max:5200'
         ]);
 
-        $profile = $request->profile;
-        $new_profile = time() . ' - ' . $profile->getClientOriginalName();
-
-        profile::create([
-            "no_tlp" => $request->no_tlp,
-            "tgl_lahir" => $request->tgl_lahir,
-            "tempat_lahir" => $request->tempat_lahir,
-            "bio" => $request->bio,
-            "profile_pic" => $new_profile,
-            "user_id" => Auth::user()->id
+        $profile_pic = $request["profile_pic"];
+        $new_profile_pic = time() . ' - ' . $profile_pic->getClientOriginalName();
+        
+        $query = DB::table('profile')->insert([
+            "no_tlp" => $request["no_tlp"],
+            "tgl_lahir" => $request["tgl_lahir"],
+            "tempat_lahir" => $request["tempat_lahir"],
+            "bio" => $request["bio"],
+            "user_id" => Auth::user()->id,
+            "profile_pic" => $new_profile_pic
         ]); 
 
-        $poster->move('/profilepic', $new_profile);
-        return redirect('emboh opo ken');
+        $profile_pic->move('profilepic', $new_profile_pic);
+        return redirect('/home');
     }
 
     /**
@@ -70,7 +69,8 @@ class profilecontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = DB::table('profile')->where('id', $id)->first();
+        return view('show-content.profile.show', compact('profile'));
     }
 
     /**
@@ -81,7 +81,7 @@ class profilecontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('show-content.profile.edit');
     }
 
     /**
@@ -93,42 +93,43 @@ class profilecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'no_tlp' => 'required',
             'tgl_lahir' => 'required',
             'tempat_lahir' => 'required',
             'bio' => 'required',
-            'profile_pic' => 'required|mimes:jpeg,jpg,png|max:5000',
-
+            'profile_pic' => 'required|mimes:jpeg,jpg,png|max:5200'
         ]);
 
-        $profile = profile::findorfail($id);
+        $profile = DB::table('anime')->where('id', $id)->first();
 
         if ($request->has('profile_pic')){
-            $path = "/profilepic";
+            $path = "profilepic";
             File::delete($path . $profile->profile_pic);
-            $profile_pic = $request->profile_pic;
-            $new_profile = time() . ' - ' . $profile_pic->getClientOriginalName();
-            $profile_pic->move('/profilepic', $new_poster);
-            $post_data = [
-            "no_tlp" => $request->no_tlp,
-            "tgl_lahir" => $request->tgl_lahir,
-            "tempat_lahir" => $request->tempat_lahir,
-            "bio" => $request->bio,
-            "profile_pic" => $new_profile,
-        ]; 
-        
+            $profile_pic = $request["profile_pic"];
+            $new_profile_pic = time() . ' - ' . $profile_pic->getClientOriginalName();
+            $poster->move('profilepic', $new_profile_pic);
+            $query = DB::table('profile')
+                    ->where('id', $id)
+                    ->update([
+                        "no_tlp" => $request["no_tlp"],
+                        "tgl_lahir" => $request["tgl_lahir"],
+                        "tempat_lahir" => $request["tempat_lahir"],
+                        "bio" => $request["bio"],
+                        "profile_pic" => $new_profile_pic
+        ]); 
         }else{
-            $post_data = [
-                "no_tlp" => $request->no_tlp,
-                "tgl_lahir" => $request->tgl_lahir,
-                "tempat_lahir" => $request->tempat_lahir,
-                "bio" => $request->bio,
-            ];
+            $query = DB::table('profile')
+            ->where('id', $id)
+            ->update([
+                "no_tlp" => $request["no_tlp"],
+                "tgl_lahir" => $request["tgl_lahir"],
+                "tempat_lahir" => $request["tempat_lahir"],
+                "bio" => $request["bio"]
+                
+        ]); 
         }
-
-        $profile->update($post_data);
-        return redirect('/embuh');
+        return redirect('\home');
     }
 
     /**
@@ -139,6 +140,11 @@ class profilecontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $profile = DB::table('anime')->where('id', $id)->first();
+        $profile->delete();
+
+        $path = "profilepic";
+        File::delete($path . $profile->profile_pic);
+        return redirect()->route('/home');
     }
 }

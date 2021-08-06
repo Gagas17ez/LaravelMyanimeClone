@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\anime;
 use App\genre;
 use DB;
+use File;
 use Illuminate\Http\Request;
 
 class genrecontroller extends Controller
@@ -15,8 +16,8 @@ class genrecontroller extends Controller
      */
     public function index()
     {
-        $listtag = genre::all();
-        return view('emboh.index', compact('$listtag'));
+        $listgenre = DB::table('genre')->get();
+        return view('show-content.genre.index', compact('listgenre'));
     }
 
     /**
@@ -55,7 +56,8 @@ class genrecontroller extends Controller
      */
     public function show($id)
     {
-        //gabutuh cok lakok isine id mbek genre siji tok gabut a
+        $genrefilm = DB::table('anime')->where('genre_id', $id)->first();
+        return view('show-content.genre.show',compact('genrefilm'));
     }
 
     /**
@@ -66,8 +68,8 @@ class genrecontroller extends Controller
      */
     public function edit($id)
     {
-        $genre = genre::findorfail($id);
-        return view('emboh.edit', compact('genre'));
+        $genre = DB::table('genre')->where('id', $id)->first();
+        return view('show-content.genre.edit', compact('genre'));
     }
 
     /**
@@ -83,12 +85,13 @@ class genrecontroller extends Controller
             'genre' => 'required|unique:genre'
         ]);
 
-        $genre = genre::findorfail($id);
+        $genre = DB::table('genre')->where('id', $id)->first();
         
-        $post_data = [
-            "genre" => $request->genre,
-        ];
-        $genre->update($post_data);
+        $query = DB::table('genre')
+                    ->where('id', $id)
+                    ->update([
+                        "genre" => $request["genre"]        
+        ]); 
         return redirect('/embuhken');
     }
 
@@ -100,8 +103,8 @@ class genrecontroller extends Controller
      */
     public function destroy($id)
     {
-        $genre = genre::findorfail($id);
+        $genre = DB::table('genre')->where('id', $id)->first();
         $genre->delete();
-        return redirect()->route('embuh');
+        return redirect()->route('/home');
     }
 }

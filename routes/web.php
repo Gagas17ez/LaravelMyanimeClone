@@ -15,13 +15,11 @@ Route::get('/', function () {
     return view('show-content.anime.index');
 });
 
-Route::get('/createanime', function () {
-    return view('');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('anime', 'animecontroller');
 Route::resource('genre', 'genrecontroller');
+Route::resource('profile', 'profilecontroller');
+Route::resource('komentar', 'komentarcontroller');

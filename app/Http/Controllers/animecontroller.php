@@ -18,7 +18,7 @@ class animecontroller extends Controller
     public function index()
     {   
         $listanime = DB::table('anime')->get();
-        return view('emboh.index', compact('listanime'));
+        return view('show-content.anime.index', compact('listanime'));
     }
 
     /**
@@ -83,8 +83,8 @@ class animecontroller extends Controller
      */
     public function show($id)
     {
-        $anime = anime::findorfail($id);
-        return view('embuh.show', compact('anime'));
+        $anime = DB::table('anime')->where('id', $id)->first();
+        return view('show-content.anime.show', compact('anime'));
     }
 
     /**
@@ -95,9 +95,9 @@ class animecontroller extends Controller
      */
     public function edit($id)
     {
-        $anime = anime::findorfail($id);
-        $listgenre = genre::all();
-        return view('emboh.edit', compact('listgenre', 'anime'));
+        $anime = DB::table('anime')->where('id', $id)->first();
+        $listgenre = DB::table('genre')->get();
+        return view('show-content.anime.edit', compact('listgenre', 'anime'));
     }
 
     /**
@@ -109,8 +109,8 @@ class animecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'judul' => 'required|unique:anime',
+        $request->validate([
+            'judul' => 'required',
             'sinopsis' => 'required',
             'type' => 'required',
             'episode_count' => 'required',
@@ -123,46 +123,49 @@ class animecontroller extends Controller
             'genre_id' =>  'required'
         ]);
 
-        $anime = anime::findorfail($id);
+        $anime = DB::table('anime')->where('id', $id)->first();
 
         if ($request->has('poster')){
-            $path = "/poster";
+            $path = "poster";
             File::delete($path . $anime->poster);
-            $poster = $request->poster;
+            $poster = $request["poster"];
             $new_poster = time() . ' - ' . $poster->getClientOriginalName();
             $poster->move('/poster', $new_poster);
-            $post_data = [
-                "judul" => $request->judul,
-                "sinopsis" => $request->sinopsis,
-                "type" => $request->type,
-                "episode_count" => $request->episode_count,
-                "status" => $request->status,
-                "aired_date" => $request->aired_date,
-                "producer" => $request->producer,
-                "studio" => $request->studio,
-                "video_link" => $request->video_link,
-                "genre_id" => $request->genre_id,
-                "poster" => $new_poster,
-        ]; 
+            $query = DB::table('anime')
+                    ->where('id', $id)
+                    ->update([
+                        "judul" => $request['judul'],
+                        "sinopsis" => $request['sinopsis'],
+                        "type" => $request['type'],
+                        "episode_count" => $request['episode_count'],
+                        "status" => $request['status'],
+                        "aired_date" => $request['aired_date'],
+                        "producer" => $request['producer'],
+                        "studio" => $request['studio'],
+                        "video_link" => $request['video_link'],
+                        "genre_id" => $request['genre_id'],
+                        "poster" => $new_poster
+        ]); 
         
         }else{
-            $post_data = [
-                "judul" => $request->judul,
-                "sinopsis" => $request->sinopsis,
-                "type" => $request->type,
-                "episode_count" => $request->episode_count,
-                "status" => $request->status,
-                "aired_date" => $request->aired_date,
-                "producer" => $request->producer,
-                "studio" => $request->studio,
-                "video_link" => $request->video_link,
-                "genre_id" => $request->genre_id,
-                "poster" => $new_poster,
-            ];
+            $query = DB::table('anime')
+                    ->where('id', $id)
+                    ->update([
+                        "judul" => $request['judul'],
+                        "sinopsis" => $request['sinopsis'],
+                        "type" => $request['type'],
+                        "episode_count" => $request['episode_count'],
+                        "status" => $request['status'],
+                        "aired_date" => $request['aired_date'],
+                        "producer" => $request['producer'],
+                        "studio" => $request['studio'],
+                        "video_link" => $request['video_link'],
+                        "genre_id" => $request['genre_id']
+        ]); 
         }
 
-        $anime->update($post_data);
-        return redirect('\embuh');
+        
+        return redirect('\home');
     }
 
     /**
@@ -173,11 +176,11 @@ class animecontroller extends Controller
      */
     public function destroy($id)
     {
-        $anime = anime::findorfail($id);
+        $anime = DB::table('anime')->where('id', $id)->first();
         $anime->delete();
 
-        $path = "\poster";
+        $path = "poster";
         File::delete($path . $anime->poster);
-        return redirect()->route('embuh');
+        return redirect()->route('/home');
     }
 }
