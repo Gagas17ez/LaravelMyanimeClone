@@ -151,7 +151,7 @@ class animecontroller extends Controller
         $anime = DB::table('anime')->where('id', $id)->first();
 
         if ($request->has('poster')){
-            $path = "poster";
+            $path = "poster/";
             File::delete($path . $anime->poster);
             $poster = $request["poster"];
             $new_poster = time() . ' - ' . $poster->getClientOriginalName();
@@ -171,25 +171,7 @@ class animecontroller extends Controller
                         "genre_id" => $request['genre_id'],
                         "poster" => $new_poster
         ]); 
-        
-        }else{
-            $query = DB::table('anime')
-                    ->where('id', $id)
-                    ->update([
-                        "judul" => $request['judul'],
-                        "sinopsis" => $request['sinopsis'],
-                        "type" => $request['type'],
-                        "episode_count" => $request['episode_count'],
-                        "status" => $request['status'],
-                        "aired_date" => $request['aired_date'],
-                        "producer" => $request['producer'],
-                        "studio" => $request['studio'],
-                        "video_link" => $request['video_link'],
-                        "genre_id" => $request['genre_id']
-        ]); 
         }
-
-        
         return redirect('\home');
     }
 

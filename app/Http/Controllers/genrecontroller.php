@@ -68,8 +68,9 @@ class genrecontroller extends Controller
      */
     public function edit($id)
     {
+        $listgenre = DB::table('genre')->get();
         $genre = DB::table('genre')->where('id', $id)->first();
-        return view('show-content.genre.edit', compact('genre'));
+        return view('show-content.genre.edit', compact('genre','listgenre'));
     }
 
     /**
