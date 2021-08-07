@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\anime;
 use App\genre;
+use Auth;
 use File;
 use DB;
 
@@ -15,14 +16,29 @@ class animecontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function profile(){
+        $profile = DB::table('profile')
+        ->join('users', 'profile.user_id', '=', 'users.id')
+        ->select('profile.user_id as user_id', 'users.email as user_email')->first();
+        return $profile;
+    }
+    public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}
+    
+
+
+    
+
     public function index()
     {   
         $listanime = DB::table('anime')->get();
-        $listgenre = DB::table('genre')->get();
+        //$listgenre = DB::table('genre')->get();
         $listanimeterbaru = DB::select('select * from anime inner join genre on genre_id = genre.id order by aired_date desc limit 3'); 
         //dd($listanimeterbaru);
+        $listgenre = $this->genre();
+        $profile = $this->profile();
         $short = 'poster/';
-        return view('show-content.anime.index', compact('listanime', 'listgenre', 'listanimeterbaru', 'short'));
+        return view('show-content.anime.index', compact('listgenre', 'profile', 'listanime', 'listanimeterbaru', 'short'));
     }
 
     /**
@@ -32,8 +48,9 @@ class animecontroller extends Controller
      */
     public function create()
     {
-        $listgenre = DB::table('genre')->get();
-        return view('show-content.anime.create',compact('listgenre'));
+        $listgenre = $this->genre();
+        $profile = $this->profile();
+        return view('show-content.anime.create',compact('listgenre', 'profile'));
     }
 
     /**

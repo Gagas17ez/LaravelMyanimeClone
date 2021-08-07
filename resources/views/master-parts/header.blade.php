@@ -22,30 +22,35 @@
                                     
                                 </ul>
                             </li>
-                            @auth
-                            <li><a href="{{ route('anime.create') }}">Add Anime</a></li>
-                            
-                            <li><a href="{{ route('profile.create') }}">Add Profile</a></li>
-                            
-                            <li><a href="/profile#">Edit Profile</a></li>
-                            
-                            @endauth
+                            <li><a href="{{ route('users.index') }}">User List</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
             <div class="">
-                <div class="header__right">
-                    
+                <nav class="header__menu mobile-menu">
+                <ul class="">
                     @auth
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <li><a href="#">{{ Auth::user()->name }}&emsp;<span class="icon_profile"></span></a>
+                        <ul class="dropdown">
+                            @auth
+                                <li><a href="{{ route('anime.create') }}">Add Anime</a></li>
+                                @if (is_null($profile))
+                                <li><a href="{{ route('profile.create') }}">Add Profile</a></li>
+                                
+                                @else
+                                <li><a href="{{ route('profile.create') }}">Edit Profile</a></li>
+                                @endif
+                            @endauth
+                        </ul>
+                    </li>
                     @endauth
                     @guest
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <li><a href="{{ route('register') }}">Register</a></li>
                         @endif
                         @if (Route::has('login'))
-                        <a href="{{ route('login') }}">Login</a>
+                        <li><a href="{{ route('login') }}">Login</a></li>
                         @endif
                     @endauth
                     
@@ -65,7 +70,8 @@
                     </div>
                      @endif
                     <p><!--masukkan username disini--></p>--}}
-                </div>
+                </ul>
+                </nav>
             </div>
         </div>
         <div id="mobile-menu-wrap"></div>

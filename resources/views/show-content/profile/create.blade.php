@@ -22,8 +22,9 @@
             <div class="col-lg-12">
                 <div class="login__form">
                     <h3>Create Profile:</h3>
-                    <form action="/profile" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        
                         <div class="form-group row">
                             <label for="inputNotlp3" class="col-sm-2 col-form-label text-white">Notlp:</label>
                             <div class="col-sm-10 input__item">

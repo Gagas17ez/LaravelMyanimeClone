@@ -19,3 +19,4 @@ Route::resource('anime', 'animecontroller');
 Route::resource('genre', 'genrecontroller');
 Route::resource('profile', 'profilecontroller');
 Route::resource('komentar', 'komentarcontroller');
+Route::resource('users', 'usercontroller');
