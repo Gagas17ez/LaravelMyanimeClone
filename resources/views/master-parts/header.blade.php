@@ -14,7 +14,14 @@
                         <ul>
                             <li><a href="/anime">Homepage</a></li>
                             <li><a href="#" class="search-switch">Search</a></li>
-                            @yield('genre')
+                            <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
+                                <ul class="dropdown">
+                                    @foreach ($listgenre as $genre)
+                                    <li value="{{$genre->id}}">{{$genre->genre}}</li>    
+                                    @endforeach
+                                    
+                                </ul>
+                            </li>
                             @auth
                             <li><a href="{{ route('anime.create') }}">Add Anime</a></li>
                             

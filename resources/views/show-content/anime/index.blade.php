@@ -1,14 +1,7 @@
 @extends('master')
 
 @section('genre')
-<li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
-    <ul class="dropdown">
-        @foreach ($listgenre as $genre)
-        <li value="{{$genre->id}}">{{$genre->genre}}</li>    
-        @endforeach
-        
-    </ul>
-</li>
+
 @endsection
 
 @section('hero')
