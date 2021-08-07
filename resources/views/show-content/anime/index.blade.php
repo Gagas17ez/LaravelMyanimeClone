@@ -1,16 +1,12 @@
 @extends('master')
 
-@section('genre')
-
-@endsection
-
 @section('hero')
 <section class="hero">
     <div class="container">
         <div class="hero__slider owl-carousel">
             
             @foreach ($listanimeterbaru as $animebaru)
-            <div class="hero__items set-bg" data-setbg="{{asset('poster/'.$animebaru->poster)}}">
+            <div class="hero__items set-bg" data-setbg="{{asset($short.$animebaru->poster)}}">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="hero__text">
@@ -62,15 +58,20 @@
                     </div>
                     <div class="row">
                         @foreach ($listanime as $anime)
-                        <div class="col-4">
-                            <div class="card text-white bg-dark mb-3" style="width: 15rem;">
-                                <img class="card-img-top" src="{{asset('poster/'.$anime->poster)}}" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">{{$anime->judul}}</h5>
-                                <p class="card-text">{{$anime->sinopsis}}</p>
-                                <a href="#" class="btn btn-primary">Detail</a>
-                            </div>
-                          </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg">
+                                        <img src="{{asset('poster/'.$anime->poster)}}">
+                                        <div class="ep">{{$anime->episode_count}}</div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <ul>
+                                            <li>{{$anime->status}}</li>
+                                            <li>{{$anime->type}}</li>
+                                        </ul>
+                                        <h5><a href="#">{{$anime->judul}}</a></h5>
+                                    </div>
+                                </div>
                         </div>
                         @endforeach
                     </div>
