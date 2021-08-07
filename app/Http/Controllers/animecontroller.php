@@ -89,7 +89,10 @@ class animecontroller extends Controller
     {
         $anime = DB::table('anime')->where('id', $id)->first();
         $listgenre = DB::table('genre')->get();
-        return view('show-content.anime.detail', compact('anime','listgenre'));
+        $comment = DB::table('komentar')->where('anime_id', $id)->first();
+        $user = DB::table('users')->get();
+        //dd($comment);
+        return view('show-content.anime.detail', compact('user','comment','anime','listgenre'));
     }
 
     /**

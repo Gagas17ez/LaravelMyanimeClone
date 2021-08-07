@@ -60,20 +60,12 @@
                                         <li><span>Genre:</span> </li>
                                     </ul>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <ul>
-                                        <li><span>Scores:</span> 7.31 / 1,515</li>
-                                        <li><span>Rating:</span> 8.5 / 161 times</li>
-                                        <li><span>Duration:</span> 24 min/ep</li>
-                                        <li><span>Quality:</span> HD</li>
-                                        <li><span>Views:</span> 131,541</li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="anime__details__btn">
                             <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                            <a href="#" class="watch-btn"><span>Watch Now</span> <i
+                            <a href="#" class="watch-btn"><span>Likes</span> <i
                                 class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -86,62 +78,18 @@
                         <div class="section-title">
                             <h5>Reviews</h5>
                         </div>
+                        @foreach ($user as $item)
                         <div class="anime__review__item">
+                            
                             <div class="anime__review__item__pic">
-                                <img src="img/anime/review-1.jpg" alt="">
+                                <img src="{{asset('poster/'.$embohkrek)}}" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                "demons" LOL</p>
+                                <h6>{{$item->name}}<span>1 Hour ago</span></h6>
+                                <p>{{$comment->komentar}}</p>
                             </div>
                         </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-2.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                                <p>Finally it came out ages ago</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-3.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                                <p>Where is the episode 15 ? Slow update! Tch</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-4.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                "demons" LOL</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-5.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                                <p>Finally it came out ages ago</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-6.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                                <p>Where is the episode 15 ? Slow update! Tch</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="anime__details__form">
                         <div class="section-title">
