@@ -117,6 +117,8 @@ class animecontroller extends Controller
         return view('show-content.anime.detail', compact('user','comment','anime','listgenre'));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -22,7 +22,7 @@
             <div class="col-lg-12">
                 <div class="login__form">
                     <h3>Create Profile:</h3>
-                    <form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="/profile" method="POST" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="form-group row">
