@@ -98,7 +98,7 @@ class animecontroller extends Controller
 
         $poster->move('poster', $new_poster);
         $poster_wide->move('poster_wide', $new_poster_wide);
-        return redirect('/home');
+        return redirect('/anime');
     }
 
     /**

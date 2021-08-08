@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-around">
             <div class="">
                 <div class="header__logo">
-                    <a href="./index.html">
+                    <a href="/anime">
                         <img src="{{asset('template.anime/img/logo.png')}}" alt="">
                     </a>
                 </div>
@@ -15,9 +15,9 @@
                             <li><a href="/anime">Homepage</a></li>
                             <li><a href="#" class="search-switch">Search</a></li>
                             <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
-                                <ul class="dropdown">
+                                <ul class="dropdown" style="background-color: #070720">
                                     @foreach ($listgenre as $genre)
-                                    <li value="{{$genre->id}}">{{$genre->genre}}</li>    
+                                    <li value="{{$genre->id}}" class="dropdown-item" style="color: white">{{$genre->genre}}</li>    
                                     @endforeach
                                     
                                 </ul>
