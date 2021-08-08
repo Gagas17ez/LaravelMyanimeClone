@@ -18,7 +18,7 @@ class profilecontroller extends Controller
     public function profile(){
         $profile = DB::table('profile')
         ->join('users', 'profile.user_id', '=', 'users.id')
-        ->select('profile.user_id as user_id', 'users.email as user_email')->first();
+        ->select('profile.user_id as user_id', 'users.email as user_email', 'profile.profile_pic as profile_pic')->first();
         return $profile;
     }
     public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}

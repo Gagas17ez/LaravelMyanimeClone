@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/', function(){
+    return redirect('/anime');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/anime/table', 'animetablecontroller@show')->name('anime.table');

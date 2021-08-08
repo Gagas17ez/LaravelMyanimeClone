@@ -34,7 +34,7 @@
                             </div>
                         </div>
             
-                        <button class="btn btn-info"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
+                        <button class="btn btn-primary"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
                     </form>
                 </div>
             </div>

@@ -109,11 +109,11 @@
                     </div>
                     <div class="row">
                         @foreach ($listanime as $anime)
-                        <div class="col-lg-4 col-md-6 col-sm-6" >
+                        <div class="col-lg-3 col-md-3 col-sm-3" >
                             <a href="anime/{{$anime->id}}">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg">
-                                        <img src="{{asset('poster/'.$anime->poster)}}" height="300" width="225">
+                                        <img src="{{asset('poster/'.$anime->poster)}}" height="325" width="235">
                                         <div class="ep">{{$anime->episode_count}}</div>
                                     </div>
                                     <div class="product__item__text">

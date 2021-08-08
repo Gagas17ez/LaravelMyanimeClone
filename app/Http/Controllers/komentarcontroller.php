@@ -54,7 +54,7 @@ class komentarcontroller extends Controller
             "user_idkomen" => Auth::user()->id,
             "anime_id" => $request->anime_id
         ]); 
-        return redirect('/anime');
+        return redirect('/anime/'.$request->anime_id);
     
     }
 
@@ -113,7 +113,8 @@ class komentarcontroller extends Controller
     public function destroy($id)
     {
         $komen = DB::table('komentar')->where('id', $id)->first();
+        $anime_id = $komen->anime_id;
         $komen->delete();
-        return redirect()->route('/anime');
+        return redirect()->route('/anime/'.$anime_id);
     }
 }

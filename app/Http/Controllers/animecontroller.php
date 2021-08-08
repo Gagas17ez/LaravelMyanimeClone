@@ -20,7 +20,7 @@ class animecontroller extends Controller
     public function profile(){
         $profile = DB::table('profile')
         ->join('users', 'profile.user_id', '=', 'users.id')
-        ->select('profile.user_id as user_id', 'users.email as user_email')->first();
+        ->select('profile.user_id as user_id', 'users.email as user_email' , 'profile.profile_pic as profile_pic')->first();
         return $profile;
     }
     public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}
@@ -112,13 +112,17 @@ class animecontroller extends Controller
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
         
-        $profile = DB::table('profile')->get();
+        $profile = $this->profile();
         
         //dd($listanimeterbaru);
         $short = 'profilepic/';
         $anime = DB::table('anime')->where('id', $id)->first();
         $listgenre = DB::table('genre')->get();
-        $comment = DB::table('komentar')->get();
+        if (!is_null($anime->viewcount))
+        { $addview = $anime->viewcount + 1; $animechangeview = DB::table('anime')->where('id', $id)->update(['viewcount' => $addview]);}
+        else
+        {$animechangeview = DB::table('anime')->where('id', $id)->update(['viewcount' => 1]);}
+        $comment = DB::table('komentar')->where('anime_id', $id)->join('profile', 'komentar.user_idkomen', '=', 'profile.user_id')->get();
         //dd($comment);
         return view('show-content.anime.detail', compact('comment','anime','listgenre','short','profile','listuser'));
     }
@@ -136,7 +140,7 @@ class animecontroller extends Controller
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
         
-        $profile = DB::table('profile')->get();
+        $profile = $this->profile();;
         
         //dd($listanimeterbaru);
         $short = 'profilepic/';
@@ -157,7 +161,7 @@ class animecontroller extends Controller
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
         $listgenre = DB::table('genre')->get();
-        $profile = DB::table('profile')->get();
+        $profile = $this->profile();;
         
         //dd($listanimeterbaru);
         $short = 'profilepic/';
@@ -214,11 +218,12 @@ class animecontroller extends Controller
      */
     public function destroy($id)
     {
+        $comment = DB::table('komentar')->where('anime_id', $id)->delete();
         $anime = DB::table('anime')->where('id', $id)->first();
-        $anime->delete();
-
-        $path = "poster";
+        $path = "public/poster/";
         File::delete($path . $anime->poster);
-        return redirect()->route('/anime');
+        $anime = DB::table('anime')->where('id', $id)->delete();
+        
+        return redirect(route('anime'));
     }
 }

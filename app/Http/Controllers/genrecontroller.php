@@ -18,7 +18,7 @@ class genrecontroller extends Controller
     public function profile(){
         $profile = DB::table('profile')
             ->join('users', 'profile.user_id', '=', 'users.id')
-            ->select('profile.user_id as user_id', 'users.email as user_email')->first();
+            ->select('profile.user_id as user_id', 'users.email as user_email', 'profile.profile_pic as profile_pic')->first();
         return $profile;
     }
     public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}
@@ -64,7 +64,7 @@ class genrecontroller extends Controller
         $query = DB::table('genre')->insert([
             "genre" => $request["genre"]
         ]);
-        return redirect('/anime');
+        return redirect('/genre');
     }
 
     /**
@@ -89,7 +89,7 @@ class genrecontroller extends Controller
     {
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
-        $profile = DB::table('profile')->get();
+        $profile = $this->profile();;
         $listgenre = DB::table('genre')->get();
         $genre = DB::table('genre')->where('id', $id)->first();
         return view('show-content.genre.edit', compact('genre','listgenre','profile','listuser'));

@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
-                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                    <a href="./categories.html">Detail</a>
+                    <a href="/anime"><i class="fa fa-home"></i> Home</a>
+                    <a href="/anime/{{$anime->id}}">Detail</a>
                     <span></span>
                 </div>
             </div>
@@ -27,9 +27,9 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="anime__details__pic set-bg">
-                        <img src="{{asset('poster/'.$anime->poster)}}">
-                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                        <img src="{{asset('poster/'.$anime->poster)}}" height="375px" width="auto">
+                        <div class="comment"><i class="fa fa-comments"></i> {{count($comment)}}</div>
+                        <div class="view"><i class="fa fa-eye"></i> {{$anime->viewcount}}</div>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -64,10 +64,18 @@
                             </div>
                         </div>
                         <div class="anime__details__btn">
-                            <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                            <a href="#" class="watch-btn"><span>Likes</span> <i
-                                class="fa fa-angle-right"></i></a>
-                            </div>
+                            
+                            @if (Auth::user()->status == 'admin')
+                                <a href="#" class="follow-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                <a href="#" class="follow-btn mx-5 thedelete" type="submit"
+                                onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+                                <i class="fa fa-eye" aria-hidden="true"></i> Delete</a>
+                                <form role="form" action="/anime/{{$anime->id}}" method="post" style="display: none;" id="delete-form">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            @endif
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -81,11 +89,14 @@
                         @foreach ($comment as $item)
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
-                                <img src="https://i.imgur.com/5GPPLwC.png" alt="">
+                                <img src="{{asset('profilepic/'.$item->profile_pic)}}" alt="">
                             </div>
                             <div class="anime__review__item__text">
                                 <h6>{{$item->nama_komentar}}<span>    Rating : {{$item->rating}}</span></h6>
                                 <p>{{$item->komentar}}</p>
+                                <div style="text-align: right;">
+                                    <small><a href=""></a></small>
+                                </div>
                             </div>
                         </div>
                         @endforeach
