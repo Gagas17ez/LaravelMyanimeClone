@@ -71,8 +71,8 @@ class animecontroller extends Controller
             'producer' => 'required',
             'studio' => 'required',
             'video_link' =>  'required',
-            'poster' =>  'required|mimes:jpeg,jpg,png|max:2200',
-            'poster_wide' => 'required|mimes:jpeg,jpg,png|max:2200',
+            'poster' =>  'required|mimes:jpeg,jpg,png|max:5200',
+            'poster_wide' => 'required|mimes:jpeg,jpg,png|max:5200',
             'genre_id' =>  'required'
         ]);
 
@@ -127,9 +127,16 @@ class animecontroller extends Controller
      */
     public function edit($id)
     {
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        
+        $profile = DB::table('profile')->get();
+        
+        //dd($listanimeterbaru);
+        $short = 'profilepic/';
         $anime = DB::table('anime')->where('id', $id)->first();
         $listgenre = DB::table('genre')->get();
-        return view('show-content.anime.edit', compact('listgenre', 'anime'));
+        return view('show-content.anime.edit', compact('listgenre', 'anime','listuser','profile'));
     }
 
     /**
@@ -141,6 +148,13 @@ class animecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        $listgenre = DB::table('genre')->get();
+        $profile = DB::table('profile')->get();
+        
+        //dd($listanimeterbaru);
+        $short = 'profilepic/';
         $request->validate([
             'judul' => 'required',
             'sinopsis' => 'required',
@@ -158,14 +172,14 @@ class animecontroller extends Controller
         $anime = DB::table('anime')->where('id', $id)->first();
 
         if ($request->has('poster')){
-            $path = "poster/";
+            $path = "poster";
             File::delete($path . $anime->poster);
             $poster = $request["poster"];
             $new_poster = time() . ' - ' . $poster->getClientOriginalName();
-            $poster->move('/poster', $new_poster);
-                    $poster_wide = $request["poster_wide"];
-                    $new_poster_wide = time() . ' - ' . $poster_wide->getClientOriginalName();
-                    $poster_wide->move('poster_wide', $new_poster_wide);
+            $poster->move('poster', $new_poster);
+            $poster_wide = $request["poster_wide"];
+            $new_poster_wide = time() . ' - ' . $poster_wide->getClientOriginalName();
+            $poster_wide->move('poster_wide', $new_poster_wide);
             $query = DB::table('anime')
                     ->where('id', $id)
                     ->update([
@@ -183,7 +197,7 @@ class animecontroller extends Controller
                         "poster_wide" => $new_poster_wide
         ]); 
         }
-        return redirect('\home');
+        return redirect('/anime');
     }
 
     /**

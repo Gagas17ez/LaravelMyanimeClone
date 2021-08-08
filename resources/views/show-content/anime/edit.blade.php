@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="login__form">
-                    <h3>Create Anime:</h3>
+                    <h3>Edit Anime:</h3>
                     <form action="/anime/{{$anime->id}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -136,6 +136,16 @@
                             <div class="col-sm-10 input__item">
                                 <input type="file" class="form-control" id="poster" value="{{$anime->poster}}" name="poster" placeholder="Poster" >
                                 @error('Poster')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>                
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputPosterwide3" class="col-sm-2 col-form-label text-white">Poster Wide:</label>
+                            <div class="col-sm-10 input__item">
+                                <input type="file" class="form-control" id="poster_wide" value="{{$anime->poster_wide}}" name="poster_wide" placeholder="Posterwide" >
+                                @error('poster_wide')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>                

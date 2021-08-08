@@ -35,7 +35,10 @@
                         <ul class="dropdown" style="background-color: #070720;">
                             @auth
                                 @if (Auth::user()->status == "admin")
+                                    <li class="dropdown-item"><a href="/anime/table" style="color: white">Show Anime</a></li>
+                                    <li class="dropdown-item"><a href="/genre" style="color: white">Show Genre</a></li>
                                     <li class="dropdown-item"><a href="{{ route('anime.create') }}" style="color: white">Add Anime</a></li>
+                                    
                                 @endif
                                 @if (is_null($profile))
                                 <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white">Add Profile</a></li>

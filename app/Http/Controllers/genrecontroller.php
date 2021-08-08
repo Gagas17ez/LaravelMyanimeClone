@@ -16,8 +16,14 @@ class genrecontroller extends Controller
      */
     public function index()
     {
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        $profile = DB::table('profile')->get();
+        
+        //dd($listanimeterbaru);
+        $short = 'profilepic/';
         $listgenre = DB::table('genre')->get();
-        return view('show-content.genre.index', compact('listgenre'));
+        return view('show-content.genre.index', compact('listgenre','listuser','profile'));
     }
 
     /**
@@ -68,9 +74,12 @@ class genrecontroller extends Controller
      */
     public function edit($id)
     {
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        $profile = DB::table('profile')->get();
         $listgenre = DB::table('genre')->get();
         $genre = DB::table('genre')->where('id', $id)->first();
-        return view('show-content.genre.edit', compact('genre','listgenre'));
+        return view('show-content.genre.edit', compact('genre','listgenre','profile','listuser'));
     }
 
     /**
@@ -93,7 +102,7 @@ class genrecontroller extends Controller
                     ->update([
                         "genre" => $request["genre"]        
         ]); 
-        return redirect('/embuhken');
+        return redirect('/anime');
     }
 
     /**

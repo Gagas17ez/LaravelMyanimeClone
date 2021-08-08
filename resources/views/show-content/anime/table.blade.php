@@ -2,7 +2,7 @@
 
 @section('main')
     <table class="table table-dark">
-        <thead style="background-color: #161F3A">
+        <thead style="background-color: #161F3A"><br><br><br>
             <tr>
                 <th scope="col">ID</th> 
                 <th scope="col">judul</th> 
@@ -13,7 +13,7 @@
                 <th scope="col">studio</th> 
                 <th scope="col">video_link</th> 
                 <th scope="col">poster</th>
-                <th scope="col">genre_id</th> 
+                 
                 <th scope="col">action</th> 
                   
             </tr>
@@ -31,7 +31,7 @@
                 <td>{{$item->status}}</td>  
                 <td>{{$item->aired_date}}</td>  
                 <td>{{$item->poster}}</td>  
-                <td>{{$genre_id}}</td>  
+                
                 <td style="display: flex;">  
                     <a href="/anime/{{$item->id}}/edit" class="btn btn-sm btn-success">Update</a>&nbsp; 
                     
