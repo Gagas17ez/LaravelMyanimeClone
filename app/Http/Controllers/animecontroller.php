@@ -72,11 +72,14 @@ class animecontroller extends Controller
             'studio' => 'required',
             'video_link' =>  'required',
             'poster' =>  'required|mimes:jpeg,jpg,png|max:2200',
+            'poster_wide' => 'required|mimes:jpeg,jpg,png|max:2200',
             'genre_id' =>  'required'
         ]);
 
         $poster = $request["poster"];
         $new_poster = time() . ' - ' . $poster->getClientOriginalName();
+        $poster_wide = $request["poster_wide"];
+        $new_poster_wide = time() . ' - ' . $poster_wide->getClientOriginalName();
         
         $query = DB::table('anime')->insert([
             "judul" => $request["judul"],
@@ -89,10 +92,12 @@ class animecontroller extends Controller
             "studio" => $request["studio"],
             "video_link" => $request["video_link"],
             "genre_id" => $request["genre_id"],
-            "poster" => $new_poster
+            "poster" => $new_poster,
+            "poster_wide" => $new_poster_wide
         ]); 
 
         $poster->move('poster', $new_poster);
+        $poster_wide->move('poster_wide', $new_poster_wide);
         return redirect('/home');
     }
 
@@ -156,6 +161,9 @@ class animecontroller extends Controller
             $poster = $request["poster"];
             $new_poster = time() . ' - ' . $poster->getClientOriginalName();
             $poster->move('/poster', $new_poster);
+                    $poster_wide = $request["poster_wide"];
+                    $new_poster_wide = time() . ' - ' . $poster_wide->getClientOriginalName();
+                    $poster_wide->move('poster_wide', $new_poster_wide);
             $query = DB::table('anime')
                     ->where('id', $id)
                     ->update([
@@ -169,7 +177,8 @@ class animecontroller extends Controller
                         "studio" => $request['studio'],
                         "video_link" => $request['video_link'],
                         "genre_id" => $request['genre_id'],
-                        "poster" => $new_poster
+                        "poster" => $new_poster,
+                        "poster_wide" => $new_poster_wide
         ]); 
         }
         return redirect('\home');

@@ -22,7 +22,7 @@
             <div class="col-lg-12">
                 <div class="login__form">
                     <h3>Create Anime:</h3>
-                    <form action="/anime" method="POST" enctype="multipart/form-data">
+                    <form role="{{route('anime.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="inputJudul3" class="col-sm-2 col-form-label text-white">Judul:</label>
@@ -131,10 +131,20 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputPoster3" class="col-sm-2 col-form-label text-white">Poster:</label>
+                            <label for="inputPoster3" class="col-sm-2 col-form-label text-white">Poster Tall:</label>
                             <div class="col-sm-10 input__item">
                                 <input type="file" class="form-control" id="poster" name="poster" placeholder="Poster" >
-                                @error('Poster')
+                                @error('poster_wide')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>                
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputPosterwide3" class="col-sm-2 col-form-label text-white">Poster Wide:</label>
+                            <div class="col-sm-10 input__item">
+                                <input type="file" class="form-control" id="poster_wide" name="poster_wide" placeholder="Posterwide" >
+                                @error('poster_wide')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>                
@@ -142,7 +152,7 @@
                     
                         
                         
-                        <button class="btn btn-info"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
+                        <button class="btn btn-primary"><i class="fa fa-plus add" aria-hidden="true" id="add"></i> Tambahkan</button>
                     </form>
                 </div>
             </div>

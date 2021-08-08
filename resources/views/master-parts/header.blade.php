@@ -32,15 +32,26 @@
                 <ul class="">
                     @auth
                     <li><a href="#">{{ Auth::user()->name }}&emsp;<span class="icon_profile"></span></a>
-                        <ul class="dropdown">
+                        <ul class="dropdown" style="background-color: #070720;">
                             @auth
-                                <li><a href="{{ route('anime.create') }}">Add Anime</a></li>
+                                @if (Auth::user()->status == "admin")
+                                    <li class="dropdown-item"><a href="{{ route('anime.create') }}" style="color: white">Add Anime</a></li>
+                                @endif
                                 @if (is_null($profile))
-                                <li><a href="{{ route('profile.create') }}">Add Profile</a></li>
+                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white">Add Profile</a></li>
                                 
                                 @else
-                                <li><a href="{{ route('profile.create') }}">Edit Profile</a></li>
+                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white">Edit Profile</a></li>
                                 @endif
+                                <li class="dropdown-item"><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" style="color: white">
+                                        {{ __('Logout') }}
+                                </a></li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                </form>
                             @endauth
                         </ul>
                     </li>

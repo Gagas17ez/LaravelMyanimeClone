@@ -26,6 +26,7 @@ class CreateAnimeTable extends Migration
             $table->string('video_link', 100)->nullable();
             $table->integer('rating')->nullable();
             $table->string('poster');
+            $table->string('poster_wide');
         });
     }
 

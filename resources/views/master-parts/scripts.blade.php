@@ -7,3 +7,4 @@
 <script src="{{asset('template.anime/js/jquery.slicknav.js')}}"></script>
 <script src="{{asset('template.anime/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('template.anime/js/main.js')}}"></script>
+<script src="{{asset('template.anime/js/addrmactive.js')}}"></script>
