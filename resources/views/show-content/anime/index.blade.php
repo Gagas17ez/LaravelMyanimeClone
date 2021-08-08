@@ -118,10 +118,10 @@
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>{{$anime->status}}</li>
-                                            <li>{{$anime->type}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->status}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->type}}</li>
                                         </ul>
-                                        <h5><a href="#">{{$anime->judul}}</a></h5>
+                                        <h5><a href="/anime/{{$anime->id}}">{{$anime->judul}}</a></h5>
                                     </div>
                                 </div>
                             </a>

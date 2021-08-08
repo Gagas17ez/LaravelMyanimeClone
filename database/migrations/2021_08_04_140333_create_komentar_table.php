@@ -15,6 +15,7 @@ class CreateKomentarTable extends Migration
     {
         Schema::create('komentar', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama_komentar');
             $table->longText('komentar');
             $table->integer('rating');
             $table->timestamps();
