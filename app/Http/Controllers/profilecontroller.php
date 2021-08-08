@@ -78,7 +78,7 @@ class profilecontroller extends Controller
         if ($request->has('profile_pic')){
             $path = "profilepic";
             $profile = $this->profile();
-            File::delete($path . $profile->profile_pic);
+            // File::delete($path . $profile->profile_pic);
             $profile_pic = $request["profile_pic"];
             $new_profile_pic = time() . ' - ' . $profile_pic->getClientOriginalName();
             $profile_pic->move('profilepic', $new_profile_pic);
