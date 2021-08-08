@@ -11,7 +11,7 @@
   <div class="carousel-inner">
       @foreach ($listanimeterbaru as $key => $animebaru)
         <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-            <img src="{{asset($short.$animebaru->poster)}}" class="d-block w-100" alt="..." height="420" width="600">
+            <img src="{{asset($short.$animebaru->poster_wide)}}" class="d-block w-100" alt="..." height="420" width="600">
             <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -106,15 +106,15 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg">
-                                        <img src="{{asset('poster/'.$anime->poster)}}">
-                                        <div class="ep">{{$anime->episode_count}}</div>
+                                        <img src="{{asset('poster/'.$anime->poster)}}" href="/anime/{{$anime->id}}">
+                                        <div class="ep" href="/anime/{{$anime->id}}">{{$anime->episode_count}}</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>{{$anime->status}}</li>
-                                            <li>{{$anime->type}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->status}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->type}}</li>
                                         </ul>
-                                        <h5><a href="#">{{$anime->judul}}</a></h5>
+                                        <h5><a href="/anime/{{$anime->id}}">{{$anime->judul}}</a></h5>
                                     </div>
                                 </div>
                         </div>

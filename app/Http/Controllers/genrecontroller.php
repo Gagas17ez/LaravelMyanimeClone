@@ -33,7 +33,11 @@ class genrecontroller extends Controller
      */
     public function create()
     {
-        return view('show-content.genre.create');
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        $profile = DB::table('profile')->get();
+        $listgenre = DB::table('genre')->get();
+        return view('show-content.genre.create',compact('listuser','profile','listgenre'));
     }
 
     /**

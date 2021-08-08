@@ -38,6 +38,7 @@
                                     <li class="dropdown-item"><a href="/anime/table" style="color: white">Show Anime</a></li>
                                     <li class="dropdown-item"><a href="/genre" style="color: white">Show Genre</a></li>
                                     <li class="dropdown-item"><a href="{{ route('anime.create') }}" style="color: white">Add Anime</a></li>
+                                    <li class="dropdown-item"><a href="/genre/create" style="color: white">Add Genre</a></li>
                                     
                                 @endif
                                 @if (is_null($profile))

@@ -109,12 +109,18 @@ class animecontroller extends Controller
      */
     public function show($id)
     {
+        $listuser = DB::table('users')
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+        
+        $profile = DB::table('profile')->get();
+        
+        //dd($listanimeterbaru);
+        $short = 'profilepic/';
         $anime = DB::table('anime')->where('id', $id)->first();
         $listgenre = DB::table('genre')->get();
-        $comment = DB::table('komentar')->where('anime_id', $id)->first();
-        $user = DB::table('users')->get();
+        $comment = DB::table('komentar')->get();
         //dd($comment);
-        return view('show-content.anime.detail', compact('user','comment','anime','listgenre'));
+        return view('show-content.anime.detail', compact('comment','anime','listgenre','short','profile','listuser'));
     }
 
 

@@ -78,15 +78,14 @@
                         <div class="section-title">
                             <h5>Reviews</h5>
                         </div>
-                        @foreach ($user as $item)
+                        @foreach ($comment as $item)
                         <div class="anime__review__item">
-                            
                             <div class="anime__review__item__pic">
-                                <img src="{{asset('poster/'.$embohkrek)}}" alt="">
+                                <img src="https://i.imgur.com/5GPPLwC.png" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                <h6>{{$item->name}}<span>1 Hour ago</span></h6>
-                                <p>{{$comment->komentar}}</p>
+                                <h6>{{$item->nama_komentar}}<span>    Rating : {{$item->rating}}</span></h6>
+                                <p>{{$item->komentar}}</p>
                             </div>
                         </div>
                         @endforeach
@@ -95,9 +94,19 @@
                         <div class="section-title">
                             <h5>Your Comment</h5>
                         </div>
-                        <form action="#">
-                            <textarea placeholder="Your Comment"></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                        <form action="/komentar" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <textarea class="form-control" id="komentar" name="komentar" placeholder="Komentar"></textarea>
+                            @error('komentar')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            <h5>Your Rating</h5>
+                            <input type="hidden" id="anime_id" name="anime_id" value="{{$anime->id}}" >
+                            <input type="number" class="form-control" id="rating" name="rating" placeholder="Rating" ><br>
+                                @error('rating')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            <button type="submit"><i class="fa fa-location-arrow"></i>Review</button>
                         </form>
                     </div>
                 </div>
