@@ -1,8 +1,10 @@
 @extends('master')
 
 @section('main')
+<button class="btn btn-primary m-4"><a href="{{ route('anime.create') }}" style="color: white"><i class="fa fa-plus" aria-hidden="true"></i>
+ Add Anime</a></button>
     <table class="table table-dark">
-        <thead style="background-color: #161F3A"><br><br><br>
+        <thead style="background-color: #161F3A">
             <tr>
                 <th scope="col">ID</th> 
                 <th scope="col">judul</th> 

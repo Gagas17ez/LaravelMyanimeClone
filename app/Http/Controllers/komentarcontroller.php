@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\anime;
+use App\genre;
+use Auth;
+use File;
+use DB;
+
 
 class komentarcontroller extends Controller
 {
@@ -37,15 +43,18 @@ class komentarcontroller extends Controller
         $request->validate([
             'komentar' => 'required',
             'rating' => 'required',
+            'anime_id' => 'required'
+            
         ]);
 
         $query = DB::table('komentar')->insert([
             "komentar" => $request->komentar,
             "rating" => $request->rating,
+            "nama_komentar" => Auth::user()->name,
             "user_idkomen" => Auth::user()->id,
-            "anime_id" => $request->idanime,
+            "anime_id" => $request->anime_id
         ]); 
-        return redirect('emboh opo ken');
+        return redirect('/anime');
     
     }
 
@@ -105,6 +114,6 @@ class komentarcontroller extends Controller
     {
         $komen = DB::table('komentar')->where('id', $id)->first();
         $komen->delete();
-        return redirect()->route('/home');
+        return redirect()->route('/anime');
     }
 }

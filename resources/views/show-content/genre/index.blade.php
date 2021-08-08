@@ -1,6 +1,8 @@
 @extends('master')
 
 @section('main')
+<button class="btn btn-primary m-4"><a href="/genre/create" style="color: white"><i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
+ Add Genre</a></button>
     <table class="table table-dark">
         <thead style="background-color: #161F3A">
             <tr>

@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('main')
+
     <table class="table table-dark">
         <thead style="background-color: #161F3A">
             <tr>

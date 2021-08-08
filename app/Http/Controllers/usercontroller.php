@@ -31,7 +31,7 @@ class usercontroller extends Controller
         // $listanimeterbaru = DB::select('select users.id, users.name, users.email, users.password from users inner join profile on users.id = profile.user_id order by aired_date desc limit 3');
         
         $listuser = DB::table('users')
-                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
+                                ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password', 'users.status as user_status')->get();
         $listgenre = $this->genre();
         $profile = $this->profile();
         

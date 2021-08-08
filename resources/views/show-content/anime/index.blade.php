@@ -1,19 +1,22 @@
 @extends('master')
 
 @section('hero')
-<div class="container">
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+<div class="container my-5">
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="border-radius: 55px 55px 55px 55px; overflow:hidden">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      @foreach ($listanimeterbaru as $key => $animebaru)
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{{$key == 0 ? 'active' : ''}}"></li>
+      @endforeach
+    {{-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> --}}
   </ol>
   <div class="carousel-inner">
       @foreach ($listanimeterbaru as $key => $animebaru)
         <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
-            <img src="{{asset($short.$animebaru->poster)}}" class="d-block w-100" alt="..." height="420" width="600">
+            <img src="{{asset('poster_wide/'.$animebaru->poster_wide)}}" class="d-block w-100" alt="anime" height="520" width="640">
             <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
+                <h2 style="font-weight: 900">First slide label</h2></b>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
         </div>
@@ -34,14 +37,17 @@
       </div>
     </div> --}}
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+  @if (count($listanimeterbaru) != 1)
+       <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+       <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+       </a> 
+  @endif
+
 </div>
 </div>
 {{-- <section class="hero">
@@ -87,7 +93,7 @@
 <section class="product spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="trending__product">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
@@ -103,25 +109,27 @@
                     </div>
                     <div class="row">
                         @foreach ($listanime as $anime)
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6" >
+                            <a href="anime/{{$anime->id}}">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg">
-                                        <img src="{{asset('poster/'.$anime->poster)}}">
+                                        <img src="{{asset('poster/'.$anime->poster)}}" height="300" width="225">
                                         <div class="ep">{{$anime->episode_count}}</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
-                                            <li>{{$anime->status}}</li>
-                                            <li>{{$anime->type}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->status}}</li>
+                                            <li href="/anime/{{$anime->id}}">{{$anime->type}}</li>
                                         </ul>
-                                        <h5><a href="#">{{$anime->judul}}</a></h5>
+                                        <h5><a href="/anime/{{$anime->id}}">{{$anime->judul}}</a></h5>
                                     </div>
                                 </div>
+                            </a>
                         </div>
                         @endforeach
                     </div>
                 </div>
-                    <div class="popular__product">
+                    {{-- <div class="popular__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
@@ -456,9 +464,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-8">
+            {{-- <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="product__sidebar">
                     <div class="product__sidebar__view">
                         <div class="section-title">
@@ -561,7 +569,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
