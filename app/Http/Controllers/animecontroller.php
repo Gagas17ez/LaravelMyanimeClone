@@ -219,6 +219,6 @@ class animecontroller extends Controller
 
         $path = "poster";
         File::delete($path . $anime->poster);
-        return redirect()->route('/home');
+        return redirect()->route('/anime');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('hero')
 <div class="container my-5">
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="border-radius: 55px 55px 55px 55px; overflow:hidden">
   <ol class="carousel-indicators">
       @foreach ($listanimeterbaru as $key => $animebaru)
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="{{$key == 0 ? 'active' : ''}}"></li>

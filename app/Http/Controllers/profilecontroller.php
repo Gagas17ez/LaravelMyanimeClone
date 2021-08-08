@@ -18,7 +18,7 @@ class profilecontroller extends Controller
     public function profile(){
         $profile = DB::table('profile')
         ->join('users', 'profile.user_id', '=', 'users.id')
-        ->select('profile.user_id as user_id', 'users.email as user_email', 'profile.profile_pic')->first();
+        ->select('profile.user_id as user_id', 'users.email as user_email')->first();
         return $profile;
     }
     public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}
@@ -154,7 +154,7 @@ class profilecontroller extends Controller
 
         
 
-        return redirect('\home');
+        return redirect('/anime');
     }
 
     /**
@@ -170,6 +170,6 @@ class profilecontroller extends Controller
 
         $path = "profilepic";
         File::delete($path . $profile->profile_pic);
-        return redirect()->route('/home');
+        return redirect()->route('/anime');
     }
 }

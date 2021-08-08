@@ -14,15 +14,24 @@ class genrecontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function profile(){
+        $profile = DB::table('profile')
+            ->join('users', 'profile.user_id', '=', 'users.id')
+            ->select('profile.user_id as user_id', 'users.email as user_email')->first();
+        return $profile;
+    }
+    public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}
+    
     public function index()
     {
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
-        $profile = DB::table('profile')->get();
+        $profile = $this->profile();
         
         //dd($listanimeterbaru);
         $short = 'profilepic/';
-        $listgenre = DB::table('genre')->get();
+        $listgenre = $this->genre();
         return view('show-content.genre.index', compact('listgenre','listuser','profile'));
     }
 
@@ -35,8 +44,8 @@ class genrecontroller extends Controller
     {
         $listuser = DB::table('users')
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
-        $profile = DB::table('profile')->get();
-        $listgenre = DB::table('genre')->get();
+        $profile = $this->profile();
+        $listgenre = $this->genre();
         return view('show-content.genre.create',compact('listuser','profile','listgenre'));
     }
 
@@ -55,7 +64,7 @@ class genrecontroller extends Controller
         $query = DB::table('genre')->insert([
             "genre" => $request["genre"]
         ]);
-        return redirect('/home');
+        return redirect('/anime');
     }
 
     /**
@@ -119,6 +128,6 @@ class genrecontroller extends Controller
     {
         $genre = DB::table('genre')->where('id', $id)->first();
         $genre->delete();
-        return redirect()->route('/home');
+        return redirect()->route('/anime');
     }
 }

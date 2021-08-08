@@ -7,7 +7,11 @@
                 <th scope="col">ID</th> 
                 <th scope="col">Nama</th> 
                 <th scope="col">Email</th> 
-                <th scope="col">Password</th> 
+                @auth
+                    @if (Auth::user()->status == "admin")
+                       <th scope="col">Password</th>  
+                    @endif
+                @endauth
             </tr>
         </thead>
         <tbody style="background-color: #2E3250">
@@ -16,8 +20,22 @@
                 <th scope="row">{{$user->user_id}}</th>
                 {{-- <tr><img src="{{asset($short.$user->profile_pic)}}" alt=""></tr> --}}
                 <td>{{$user->user_name}}</td>
-                <td>{{$user->user_email}}</td>
-                <td>{{$user->user_password}}</td>                
+                @if ($user->user_status != "admin")
+                    <td>{{$user->user_email}}</td>
+                @else
+                    <td>admin</td>
+                @endif
+                @auth
+                    @if (Auth::user()->status == "admin" && $user->user_status == "admin" && Auth::user()->password != $user->user_password)
+                        <td>otheradminpassword</td>
+                    @elseif (Auth::user()->status != "admin")
+                        
+                    @else
+                        <td>{{$user->user_password}}</td>
+                        
+                    @endif
+                @endauth
+                            
             </tr>
             @endforeach
         </tbody>

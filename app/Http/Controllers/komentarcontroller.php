@@ -114,6 +114,6 @@ class komentarcontroller extends Controller
     {
         $komen = DB::table('komentar')->where('id', $id)->first();
         $komen->delete();
-        return redirect()->route('/home');
+        return redirect()->route('/anime');
     }
 }

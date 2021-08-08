@@ -15,12 +15,11 @@
                             <li><a href="/anime">Homepage</a></li>
                             <li><a href="#" class="search-switch">Search</a></li>
                             <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
-                                <ul class="dropdown" style="background-color: #070720">
+                                    <ul class="dropdown" style="background-color: #070720">
                                     @foreach ($listgenre as $genre)
                                     <li value="{{$genre->id}}" class="dropdown-item" style="color: white">{{$genre->genre}}</li>    
                                     @endforeach
-                                    
-                                </ul>
+                                    </ul>
                             </li>
                             <li><a href="{{ route('users.index') }}">User List</a></li>
                         </ul>
@@ -31,27 +30,25 @@
                 <nav class="header__menu mobile-menu">
                 <ul class="">
                     @auth
-                    <li><a href="#">{{ Auth::user()->name }}&emsp;<span class="icon_profile"></span></a>
+                    <li><a href="#">{{ Auth::user()->name }}&emsp;<span class="arrow_carrot-down"></span></a>
                         <ul class="dropdown" style="background-color: #070720;">
                             @auth
                                 @if (Auth::user()->status == "admin")
-                                    <li class="dropdown-item"><a href="/anime/table" style="color: white">Show Anime</a></li>
-                                    <li class="dropdown-item"><a href="/genre" style="color: white">Show Genre</a></li>
-                                    <li class="dropdown-item"><a href="{{ route('anime.create') }}" style="color: white">Add Anime</a></li>
-                                    <li class="dropdown-item"><a href="/genre/create" style="color: white">Add Genre</a></li>
+                                    <li class="dropdown-item"><a href="/anime/table" style="color: white; white-space:pre;"><i class="fa fa-film" aria-hidden="true"></i>&#09;Show Anime</a></li>
+                                    <li class="dropdown-item"><a href="/genre" style="color: white; white-space:pre;"><i class="fa fa-bookmark" aria-hidden="true"></i>&#09;Show Genre</a></li>
+                                    {{-- <li class="dropdown-item"><a href="{{ route('anime.create') }}" style="color: white">Add Anime</a></li>
+                                    <li class="dropdown-item"><a href="/genre/create" style="color: white">Add Genre</a></li> --}}
                                     
                                 @endif
                                 @if (is_null($profile))
-                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white">Add Profile</a></li>
+                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white; white-space:pre;"><i class="fa fa-plus" aria-hidden="true"></i>&#09;Add Profile</a></li>
                                 
                                 @else
-                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white">Edit Profile</a></li>
+                                <li class="dropdown-item"><a href="{{ route('profile.create') }}" style="color: white; white-space:pre;"><i class="fa fa-pencil" aria-hidden="true"></i>&#09;Edit Profile</a></li>
                                 @endif
                                 <li class="dropdown-item"><a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" style="color: white">
-                                        {{ __('Logout') }}
-                                </a></li>
+                                                     document.getElementById('logout-form').submit();" style="color: white; white-space:pre;"><i class="fa fa-sign-out" aria-hidden="true"></i>&#09;{{ __('Logout') }}</a></li>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
