@@ -11,13 +11,13 @@
             <div class="">
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
-                        <ul>
+                        <ul style="background-color: #070720;">
                             <li><a href="/anime">Homepage</a></li>
                             <li><a href="#" class="search-switch">Search</a></li>
                             <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     @foreach ($listgenre as $genre)
-                                    <li value="{{$genre->id}}">{{$genre->genre}}</li>    
+                                    <li value="{{$genre->id}}" href="/genre/{{$genre->id}}/edit">{{$genre->genre}}</li>    
                                     @endforeach
                                     
                                 </ul>
