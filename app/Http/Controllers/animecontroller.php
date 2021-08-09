@@ -18,9 +18,11 @@ class animecontroller extends Controller
      */
 
     public function profile(){
+        $nowid = Auth::user()->id;
         $profile = DB::table('profile')
+        ->where('profile.user_id', $nowid)
         ->join('users', 'profile.user_id', '=', 'users.id')
-        ->select('profile.user_id as user_id', 'users.email as user_email' , 'profile.profile_pic as profile_pic')->first();
+        ->select('profile.user_id as user_id', 'users.email as user_email', 'profile.profile_pic as profile_pic')->first();
         return $profile;
     }
     public function genre(){$listgenre = DB::table('genre')->get(); return $listgenre;}

@@ -7,15 +7,14 @@
         <thead style="background-color: #161F3A">
             <tr>
                 <th scope="col">ID</th> 
-                <th scope="col">judul</th> 
-                <th scope="col">sinopsis</th> 
-                <th scope="col">episode_count</th>
-                <th scope="col">aired_date</th> 
-                <th scope="col">producer</th> 
-                <th scope="col">studio</th> 
-                <th scope="col">video_link</th> 
-                <th scope="col">poster</th>
-                 
+                <th scope="col">Judul</th> 
+                <th scope="col">Sinopsis</th>
+                <th scope="col">Genre</th> 
+                <th scope="col">Tipe</th>
+                <th scope="col">Episode</th> 
+                <th scope="col">Status</th> 
+                <th scope="col">Aired date</th> 
+                <th scope="col">poster</th> 
                 <th scope="col">action</th> 
                   
             </tr>
@@ -25,9 +24,10 @@
             <tr>
                 <th scope="row">{{$item->id}}</th>
                 {{-- <tr><img src="{{asset($short.$user->profile_pic)}}" alt=""></tr> --}}
-                <td>{{$item->id}}</td>
+                {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->judul}}</td>
                 <td>{{$item->sinopsis}}</td>
+                <td>{{$item->genre}}</td>
                 <td>{{$item->type}}</td>  
                 <td>{{$item->episode_count}}</td>                  
                 <td>{{$item->status}}</td>  

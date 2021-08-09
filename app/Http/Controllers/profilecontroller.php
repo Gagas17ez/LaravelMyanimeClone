@@ -16,7 +16,9 @@ class profilecontroller extends Controller
      */
 
     public function profile(){
+        $nowid = Auth::user()->id;
         $profile = DB::table('profile')
+        ->where('profile.user_id', $nowid)
         ->join('users', 'profile.user_id', '=', 'users.id')
         ->select('profile.user_id as user_id', 'users.email as user_email', 'profile.profile_pic as profile_pic')->first();
         return $profile;
@@ -38,8 +40,10 @@ class profilecontroller extends Controller
     public function create()
     {
         $listgenre = $this->genre();
-        $profile = $this->profile();
         $user = $this->user();
+        $profile = $this->profile();
+        //dd($profile);
+        
         //dd($user);
         return view('show-content.profile.create', compact('profile', 'listgenre', 'user'));
     }
