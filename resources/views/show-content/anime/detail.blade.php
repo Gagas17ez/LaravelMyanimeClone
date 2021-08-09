@@ -67,8 +67,7 @@
                             
                             @if (Auth::user()->status == 'admin')
                                 <a href="#" class="follow-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                <a href="#" class="follow-btn mx-5 thedelete" type="submit"
-                                onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
+                                <a href="#" class="follow-btn mx-5 thedelete" type="submit">
                                 <i class="fa fa-eye" aria-hidden="true"></i> Delete</a>
                                 <form role="form" action="/anime/{{$anime->id}}" method="post" style="display: none;" id="delete-form">
                                     @csrf
@@ -144,3 +143,29 @@
         </div>
     </section>
 @endsection
+
+@push('deletenotif')
+<script>
+$(".thedelete").on('click', function(e){
+    e.preventDefault();
+    var parent = document.getElementById("delete-form");
+    swal({
+        title: "Yakin?",
+        text: "Sekali terhapus, Anda tidak bisa mendapatkan anime Anda kembali!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                setTimeout(function deleteFile(){
+                parent.submit();
+            }, 1500);
+            swal("Berhasil menghapus anime!", {
+            icon: "success",
+            });
+            }
+        });
+});
+</script>
+@endpush

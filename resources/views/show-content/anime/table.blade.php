@@ -22,7 +22,7 @@
         <tbody style="background-color: #2E3250">
             @forelse ($anime as $item)
             <tr>
-                <th scope="row">{{$item->id}}</th>
+                <th scope="row">{{$item->id}}}</th>
                 {{-- <tr><img src="{{asset($short.$user->profile_pic)}}" alt=""></tr> --}}
                 {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->judul}}</td>
@@ -37,10 +37,10 @@
                 <td style="display: flex;">  
                     <a href="/anime/{{$item->id}}/edit" class="btn btn-sm btn-success">Update</a>&nbsp; 
                     
-                    <form role="form" action="/anime/{{$item->id}}" method="post">
+                    <form role="form" action="/anime/{{$item->id}}" method="post" id="delete-form">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="delete" class="btn btn-sm btn-danger">
+                    <input type="submit" value="delete" class="btn btn-sm btn-danger thedelete">
                     </form>
                 </td>
             </tr>
@@ -48,3 +48,29 @@
         </tbody>
     </table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 @endsection
+
+@push('deletenotif')
+<script>
+$(".thedelete").on('click', function(e){
+    e.preventDefault();
+    var parent = document.getElementById("delete-form");
+    swal({
+        title: "Yakin?",
+        text: "Sekali terhapus, Anda tidak bisa mendapatkan anime Anda kembali!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                setTimeout(function deleteFile(){
+                parent.submit();
+            }, 1500);
+            swal("Berhasil menghapus anime!", {
+            icon: "success",
+            });
+            }
+        });
+});
+</script>
+@endpush

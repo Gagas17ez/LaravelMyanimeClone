@@ -35,7 +35,7 @@ class animetablecontroller extends Controller
         //dd($listanimeterbaru);
         $short = 'profilepic/';
         //dd($listuser);
-        $anime = DB::table('anime')->join('genre', 'anime.genre_id', '=', 'genre.id')->get();
+        $anime = DB::table('anime')->join('genre', 'anime.genre_id', '=', 'genre.id')->select('anime.id as id', 'anime.judul as judul', 'anime.sinopsis as sinopsis', 'genre.genre as genre', 'anime.type as type', 'anime.episode_count as episode_count', 'anime.status as status', 'anime.aired_date as aired_date', 'anime.poster as poster')->get();
         //dd($comment);
         //dd($anime);
         return view('show-content.anime.table', compact('anime', 'listuser', 'listgenre', 'short', 'profile'));

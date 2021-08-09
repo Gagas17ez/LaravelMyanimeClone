@@ -77,7 +77,10 @@
 
 <!-- Some plugins/scripts -->
 @include('master-parts.scripts')
-
+<script src="{{asset('js/swal.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@stack('deletenotif')
+@stack('successnotif')
 
 </body>
 </html>

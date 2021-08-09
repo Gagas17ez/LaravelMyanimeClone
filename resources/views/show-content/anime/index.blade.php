@@ -577,3 +577,24 @@
     </div>
 </section>
 @endsection
+
+@push('successnotif')
+    @if ((session('success')))
+    {{-- <script>
+    swal({
+        title: "Changed!",
+        text: "{{session('success')}}",
+        icon: "success",
+        button: "OK",
+      });
+    </script> --}}
+    <script>
+        Swal.fire({
+            title: "Berhasil!",
+            text: "{{session('success')}}",
+            icon: "success",
+            confirmButtonText: "Lanjut!",
+        });
+    </script>
+    @endif
+@endpush

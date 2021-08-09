@@ -100,7 +100,7 @@ class animecontroller extends Controller
 
         $poster->move('poster', $new_poster);
         $poster_wide->move('poster_wide', $new_poster_wide);
-        return redirect('/anime');
+        return redirect('/anime')->with('success', $request['judul'].' has been added');
     }
 
     /**
@@ -147,6 +147,7 @@ class animecontroller extends Controller
         //dd($listanimeterbaru);
         $short = 'profilepic/';
         $anime = DB::table('anime')->where('id', $id)->first();
+        //dd($anime);
         $listgenre = DB::table('genre')->get();
         return view('show-content.anime.edit', compact('listgenre', 'anime','listuser','profile'));
     }
@@ -209,7 +210,7 @@ class animecontroller extends Controller
                         "poster_wide" => $new_poster_wide
         ]); 
         }
-        return redirect('/anime');
+        return redirect('/anime')->with('success', $request['judul'].' has been added');
     }
 
     /**
@@ -228,6 +229,6 @@ class animecontroller extends Controller
         File::delete($path2 . $anime->poster);
         $query = DB::table('anime')->where('id', $id)->delete();
         
-        return redirect('/anime/table');
+        return redirect('/anime/table')->with('deleted', 'Anime is deleted!');
     }
 }
