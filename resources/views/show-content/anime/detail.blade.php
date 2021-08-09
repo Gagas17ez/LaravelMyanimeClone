@@ -1,8 +1,15 @@
 @extends('master')
 
-@section('genre')
-
-@endsection
+@push('tinymce')
+<script src="https://cdn.tiny.cloud/1/32f7rj0gbe0nv9nemz12w2i7ilovqx57pagff68g13polbvb/tinymce/5/tinymce.min.js"referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea', 
+      plugins: 'advist autolink lists link image charmap print preview hr anchor pagebreak', 
+      toolbar_mode: 'floating',
+   });
+  </script>
+@endpush
 
 @section('hero')
 <div class="breadcrumb-option">
@@ -96,7 +103,7 @@
                             </div>
                             <div class="anime__review__item__text">
                                 <h6>{{$item->nama_komentar}}<span>    Rating : {{$item->rating}}</span></h6>
-                                <p>{{$item->komentar}}</p>
+                                <p>{!! $item->komentar !!}</p>
                                 <div style="text-align: right;">
                                     <small><a href=""></a></small>
                                 </div>

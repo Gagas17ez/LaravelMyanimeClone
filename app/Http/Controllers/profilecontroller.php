@@ -111,7 +111,7 @@ class profilecontroller extends Controller
         }
 
         
-        return redirect('/profile/create');
+        return redirect('/anime')->with('success', 'Profile has been added');
     }
 
     /**
@@ -158,7 +158,7 @@ class profilecontroller extends Controller
 
         
 
-        return redirect('/anime');
+        return redirect('/anime')->with('success', 'Profile has been edited');
     }
 
     /**
@@ -174,6 +174,6 @@ class profilecontroller extends Controller
 
         $path = "profilepic";
         File::delete($path . $profile->profile_pic);
-        return redirect()->route('/anime');
+        return redirect('/anime')->with('success', 'Profile has been deleted');
     }
 }

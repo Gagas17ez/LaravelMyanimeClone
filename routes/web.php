@@ -17,13 +17,14 @@ Route::get('/', function(){
     return redirect('/anime');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/anime/table', 'animetablecontroller@show')->name('anime.table');
+    Route::resource('anime', 'animecontroller');
+    Route::resource('genre', 'genrecontroller');
+    Route::resource('profile', 'profilecontroller');
+    Route::resource('komentar', 'komentarcontroller');
+    Route::resource('users', 'usercontroller');
+});
 
-Route::get('/anime/table', 'animetablecontroller@show')->name('anime.table');
 
-Route::resource('anime', 'animecontroller');
-
-Route::resource('genre', 'genrecontroller');
-Route::resource('profile', 'profilecontroller');
-Route::resource('komentar', 'komentarcontroller');
-Route::resource('users', 'usercontroller');

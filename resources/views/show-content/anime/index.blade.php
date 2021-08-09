@@ -115,6 +115,8 @@
                                     <div class="product__item__pic set-bg">
                                         <img src="{{asset('poster/'.$anime->poster)}}" height="325" width="235">
                                         <div class="ep">{{$anime->episode_count}}</div>
+                                        <div class="comment"><i class="fa fa-comments"></i> 10</div>
+                                        <div class="view"><i class="fa fa-eye"></i>{{$anime->viewcount}}</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
@@ -590,10 +592,10 @@
     </script> --}}
     <script>
         Swal.fire({
-            title: "Berhasil!",
+            title: "Berhasil !",
             text: "{{session('success')}}",
             icon: "success",
-            confirmButtonText: "Lanjut!",
+            confirmButtonText: "Lanjut",
         });
     </script>
     @endif

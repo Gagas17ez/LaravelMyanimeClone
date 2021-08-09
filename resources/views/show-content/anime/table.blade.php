@@ -13,7 +13,7 @@
                 <th scope="col">Tipe</th>
                 <th scope="col">Episode</th> 
                 <th scope="col">Status</th> 
-                <th scope="col">Aired date</th> 
+                <th scope="col">Airdate</th> 
                 <th scope="col">poster</th> 
                 <th scope="col">action</th> 
                   
@@ -22,7 +22,7 @@
         <tbody style="background-color: #2E3250">
             @forelse ($anime as $item)
             <tr>
-                <th scope="row">{{$item->id}}}</th>
+                <th scope="row">{{$item->id}}</th>
                 {{-- <tr><img src="{{asset($short.$user->profile_pic)}}" alt=""></tr> --}}
                 {{-- <td>{{$item->id}}</td> --}}
                 <td>{{$item->judul}}</td>

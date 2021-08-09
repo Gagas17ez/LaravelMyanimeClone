@@ -67,7 +67,7 @@ class genrecontroller extends Controller
         $query = DB::table('genre')->insert([
             "genre" => $request["genre"]
         ]);
-        return redirect('/genre');
+        return redirect('/anime')->with('success', $request['genre'].' genre has been added');
     }
 
     /**
@@ -118,7 +118,7 @@ class genrecontroller extends Controller
                     ->update([
                         "genre" => $request["genre"]        
         ]); 
-        return redirect('/genre');
+        return redirect('/anime')->with('success', $request['genre'].' genre has been edited');
     }
 
     /**
@@ -131,6 +131,6 @@ class genrecontroller extends Controller
     {
         
         $query = DB::table('genre')->where('id', $id)->delete();
-        return redirect('/genre');
+        return redirect('/anime')->with('deleted', $request['genre'].' genre has been deleted');
     }
 }
