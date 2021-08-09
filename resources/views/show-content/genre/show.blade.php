@@ -103,7 +103,6 @@
     </div>
 </section> --}}
 @endsection
-
 @section('main')
 <section class="product spad">
     <div class="container">
