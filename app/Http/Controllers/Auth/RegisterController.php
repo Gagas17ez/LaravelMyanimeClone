@@ -69,7 +69,7 @@ class RegisterController extends Controller
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-        'status' => 'user',
+        'status' => 'admin',
         ]);
         $profile = DB::table('profile')->insert(['profile_pic' => 'default.jpg', 'user_id' => $user->id]);
         return $user;
