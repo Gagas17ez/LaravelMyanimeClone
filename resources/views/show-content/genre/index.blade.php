@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('main')
+<div class="container">
 <button class="btn btn-primary m-4"><a href="/genre/create" style="color: white"><i class="fa fa-plus" aria-hidden="true" style="color: white"></i>
  Add Genre</a></button>
     <table class="table table-dark">
@@ -30,6 +31,7 @@
             @endforeach
         </tbody>
     </table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 @endsection
 
 @push('deletenotif')

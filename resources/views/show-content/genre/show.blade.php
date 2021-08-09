@@ -9,7 +9,7 @@
 </div> --}}
 <div class="container">
 <div class="jumbotron" style="background-color: #0b0c2a">
-  <h1 class="display-4" style="color: white">{{Str::upper($genrefilm->genre)}}</h1>
+  <h1 class="display-4" style="color: white">{{Str::upper($genrefilm->genre)}} GENRE</h1>
   {{-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> --}}
   {{-- <hr class="my-4"> --}}
   {{-- <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> --}}
@@ -125,7 +125,7 @@
                     <div class="row">
                         @foreach ($listanime as $anime)
                         <div class="col-lg-3 col-md-3 col-sm-3" >
-                            <a href="anime/{{$anime->id}}">
+                            <a href="/anime/{{$anime->id}}">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg">
                                         <img src="{{asset('poster/'.$anime->poster)}}" height="325" width="235">

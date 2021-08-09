@@ -60,26 +60,29 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Type:</span>{{$anime->type}}</li>
-                                        <li><span>Studios:</span>{{$anime->studio}}</li>
-                                        <li><span>Date aired:</span>{{$anime->aired_date}}</li>
-                                        <li><span>Status:</span>{{$anime->status}}</li>
-                                        <li><span>Genre:</span> </li>
+                                        <li><span>Type :</span>{{$anime->type}}</li>
+                                        <li><span>Producer :</span>{{$anime->producer}} </li>
+                                        <li><span>Studios :</span>{{$anime->studio}}</li>
+                                        <li><span>Date aired :</span>{{$anime->aired_date}}</li>
+                                        <li><span>Status :</span>{{$anime->status}}</li>
+                                        
                                     </ul>
                                 </div>
                                 
                             </div>
                         </div>
                         <div class="anime__details__btn">
-                            
                             @if (Auth::user()->status == 'admin')
-                                <a href="#" class="follow-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                <a href="#" class="follow-btn mx-5 thedelete" type="submit">
-                                <i class="fa fa-eye" aria-hidden="true"></i> Delete</a>
+                                <a href="/anime/{{$anime->id}}/edit" class="follow-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                <a href="#" class="follow-btn thedelete" type="submit">
+                                <i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
                                 <form role="form" action="/anime/{{$anime->id}}" method="post" style="display: none;" id="delete-form">
                                     @csrf
                                     @method('DELETE')
                                 </form>
+                            @else
+                            <a href="#" class="follow-btn"><i class="fa fa-heart" aria-hidden="true"></i> Likes</a>
+                            <a href="#" class="follow-btn"><i class="fa fa-follow" aria-hidden="true"></i> Follow</a>
                             @endif
                         </div>
                         </div>
