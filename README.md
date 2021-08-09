@@ -17,7 +17,7 @@ https://youtu.be/B6c1dAN5i6g (Part 2)
 ## Link Deploy
 http://animeforumsanber.herokuapp.com/<br>
 account untuk user biasa :<br>
-email : nandakagagas@gmail.com<br>
+email : nandakagagas@gmail.com<br>///barusan heroku error semua akun terefresh
 pass : 12345678<br>
 untuk akun admin silakan create new profile 
 
