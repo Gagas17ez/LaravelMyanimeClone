@@ -100,7 +100,7 @@ class animecontroller extends Controller
 
         $poster->move('poster', $new_poster);
         $poster_wide->move('poster_wide', $new_poster_wide);
-        return redirect('/anime')->with('success', $request['judul'].'Anime has been added');
+        return redirect('/anime')->with('success', $request['judul'].' has been added');
     }
 
     /**
@@ -210,7 +210,7 @@ class animecontroller extends Controller
                         "poster_wide" => $new_poster_wide
         ]); 
         }
-        return redirect('/anime')->with('success', $request['judul'].'Anime has been updated');
+        return redirect('/anime')->with('success', $request['judul'].' has been updated');
     }
 
     /**
@@ -227,8 +227,10 @@ class animecontroller extends Controller
         $path2 = 'poster_wide';
         File::delete($path . $anime->poster);
         File::delete($path2 . $anime->poster);
+        $query = DB::table('anime')->where('id', $id)->first();
+        $judul = $query->judul;
         $query = DB::table('anime')->where('id', $id)->delete();
         
-        return redirect('/anime/table')->with('deleted', 'Anime has been deleted');
+        return redirect('/anime/table')->with('deleted', $judul.' has been deleted');
     }
 }

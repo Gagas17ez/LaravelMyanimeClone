@@ -78,8 +78,12 @@ class genrecontroller extends Controller
      */
     public function show($id)
     {
-        $genrefilm = DB::table('anime')->where('genre_id', $id)->first();
-        return view('show-content.genre.show',compact('genrefilm'));
+        $profile = $this->profile();
+        $listgenre = $this->genre();
+        $genrefilm = DB::table('genre')->where('id', $id)->first();
+        //dd($genrefilm);
+        $listanime = DB::table('anime')->where('anime.genre_id', $id)->get();
+        return view('show-content.genre.show',compact('genrefilm', 'listanime', 'listgenre', 'profile'));
     }
 
     /**
@@ -129,8 +133,11 @@ class genrecontroller extends Controller
      */
     public function destroy($id)
     {
+        $query = DB::table('genre')->where('id', $id)->first();
+        
+        $ambilnama = $query->genre;
         
         $query = DB::table('genre')->where('id', $id)->delete();
-        return redirect('/anime')->with('deleted', $request['genre'].' genre has been deleted');
+        return redirect('/anime')->with('deleted', $ambilnama.' genre has been deleted');
     }
 }

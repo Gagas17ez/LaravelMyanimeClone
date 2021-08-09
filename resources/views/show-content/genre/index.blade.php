@@ -20,10 +20,10 @@
                 <td style="display: flex;">  
                     <a href="/genre/{{$item->id}}/edit" class="btn btn-sm btn-success">Update</a>&nbsp; 
                     
-                    <form role="form" action="/genre/{{$item->id}}" method="post">
+                    <form role="form" action="/genre/{{$item->id}}" method="post" id="delete-form">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="delete" class="btn btn-sm btn-danger">
+                    <input type="submit" value="delete" class="btn btn-sm btn-danger thedelete">
                     </form>
                 </td>
             </tr>
@@ -31,3 +31,29 @@
         </tbody>
     </table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 @endsection
+
+@push('deletenotif')
+<script>
+$(".thedelete").on('click', function(e){
+    e.preventDefault();
+    var parent = document.getElementById("delete-form");
+    swal({
+        title: "Yakin?",
+        text: "Sekali terhapus, Anda tidak bisa mendapatkan anime Anda kembali!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                setTimeout(function deleteFile(){
+                parent.submit();
+            }, 1500);
+            swal("Berhasil menghapus genre!", {
+            icon: "success",
+            });
+            }
+        });
+});
+</script>
+@endpush

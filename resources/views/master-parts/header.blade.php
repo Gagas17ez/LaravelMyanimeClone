@@ -17,7 +17,7 @@
                             <li><a href="#">Genres <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown" style="background-color: #070720">
                                     @foreach ($listgenre as $genre)
-                                    <li value="{{$genre->id}}" class="dropdown-item" style="color: white">{{$genre->genre}}</li>    
+                                    <li value="{{$genre->id}}" class="dropdown-item"><a href="/genre/{{$genre->id}}" style="color: white">{{$genre->genre}}</a></li>    
                                     @endforeach
                                     </ul>
                             </li>
