@@ -15,7 +15,12 @@ https://youtu.be/B6c1dAN5i6g (Part 2)
 
 
 ## Link Deploy
-http://animeforumsanber.herokuapp.com/
+http://animeforumsanber.herokuapp.com/<br>
+account untuk user biasa :<br>
+email : nandakagagas@gmail.com<br>
+pass : 12345678<br>
+untuk akun admin silakan create new profile 
+
 
 ## Image
 <img src="WhatsApp Image 2021-08-09 at 19.15.50.jpeg" alt="Italian Trulli">
