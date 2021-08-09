@@ -1,7 +1,8 @@
 ## Tentang Kelompok
 <h3>Kelompok 13:</h3>
 Ken Dahana <br>
-Gagas Nandaka Amukti
+Gagas Nandaka Amukti <br>
+Tirta Haidar
 <br>
 <br>
 <h3>Tema project:</h3>
