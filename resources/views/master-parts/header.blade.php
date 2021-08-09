@@ -30,7 +30,7 @@
                 <nav class="header__menu mobile-menu">
                 <ul class="">
                     @auth
-                    <li id="dropdownmain"><a href="#">{{ Auth::user()->name }}&emsp;<img src="{{asset('profilepic/'.$profile->profile_pic)}}" alt="profilepicture" class="rounded-circle m-0" width="19px" height="19px"></a>
+                    <li id="dropdownmain"><a href="#">{{ Auth::user()->name }}&emsp; <img src="{{asset('profilepic/'. $profile->profile_pic)}}" alt="profilepicture" class="rounded-circle m-0" width="19px" height="19px"></a>
                         <ul class="dropdown" style="background-color: #070720;">
                             @auth
                                 @if (Auth::user()->status == "admin")

@@ -113,7 +113,7 @@ class animecontroller extends Controller
                                 ->select('users.id as user_id', 'users.name as user_name', 'users.email as user_email', 'users.password as user_password')->get();
         
         $profile = $this->profile();
-        
+        $listanime = DB::table('anime')->get();
         //dd($listanimeterbaru);
         $short = 'profilepic/';
         $anime = DB::table('anime')->where('id', $id)->first();
@@ -124,7 +124,7 @@ class animecontroller extends Controller
         {$animechangeview = DB::table('anime')->where('id', $id)->update(['viewcount' => 1]);}
         $comment = DB::table('komentar')->where('anime_id', $id)->join('profile', 'komentar.user_idkomen', '=', 'profile.user_id')->get();
         //dd($comment);
-        return view('show-content.anime.detail', compact('comment','anime','listgenre','short','profile','listuser'));
+        return view('show-content.anime.detail', compact('comment','anime','listgenre','short','profile','listuser','listanime'));
     }
 
 
@@ -220,10 +220,12 @@ class animecontroller extends Controller
     {
         $comment = DB::table('komentar')->where('anime_id', $id)->delete();
         $anime = DB::table('anime')->where('id', $id)->first();
-        $path = "public/poster/";
+        $path = 'poster';
+        $path2 = 'poster_wide';
         File::delete($path . $anime->poster);
-        $anime = DB::table('anime')->where('id', $id)->delete();
+        File::delete($path2 . $anime->poster);
+        $query = DB::table('anime')->where('id', $id)->delete();
         
-        return redirect(route('anime'));
+        return redirect('/anime/table');
     }
 }

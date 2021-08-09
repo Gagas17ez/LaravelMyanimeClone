@@ -131,10 +131,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputPoster3" class="col-sm-2 col-form-label text-white">Poster Tall:</label>
+                            <label for="inputPoster3" class="col-sm-2 col-form-label text-white">Poster :</label>
                             <div class="col-sm-10 input__item">
-                                <input type="file" class="form-control" id="poster" name="poster" placeholder="Poster" >
-                                @error('poster_wide')
+                                <input type="file" class="form-control" id="poster" name="poster"  >
+                                @error('poster')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>                
@@ -143,7 +143,7 @@
                         <div class="form-group row">
                             <label for="inputPosterwide3" class="col-sm-2 col-form-label text-white">Poster Wide:</label>
                             <div class="col-sm-10 input__item">
-                                <input type="file" class="form-control" id="poster_wide" name="poster_wide" placeholder="Posterwide" >
+                                <input type="file" class="form-control" id="poster_wide" name="poster_wide" >
                                 @error('poster_wide')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

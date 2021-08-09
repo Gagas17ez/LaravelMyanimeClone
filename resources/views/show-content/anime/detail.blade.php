@@ -80,7 +80,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="anime__trailer">
+                Trailer
+                <iframe width="1256" height="628" src="{{$anime->video_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br><br><div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="anime__details__review">
                         <div class="section-title">
@@ -126,26 +130,14 @@
                         <div class="section-title">
                             <h5>you might like...</h5>
                         </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                        @foreach ($listanime as $item)
+                        <div class="product__sidebar__view__item set-bg">
+                            <img src="{{asset('poster_wide/'.$item->poster_wide)}}">
+                            <div class="ep">{{$item->episode_count}}</div>
+                            <div class="view"><i class="fa fa-eye"></i> {{$item->type}}</div>
+                            <h5><a href="/anime/{{$item->id}}">{{$item->judul}}</a></h5>
                         </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

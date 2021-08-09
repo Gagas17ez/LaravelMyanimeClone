@@ -16,8 +16,8 @@
         <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
             <img src="{{asset('poster_wide/'.$animebaru->poster_wide)}}" class="d-block w-100" alt="anime" height="520" width="640">
             <div class="carousel-caption d-none d-md-block">
-                <h2 style="font-weight: 900">First slide label</h2></b>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h2 style="color: white;font-weight:900;">{{$animebaru->judul}}</h2></b>
+                <p style="color: white;">View Now !!</p>
             </div>
         </div>
       @endforeach
@@ -129,6 +129,9 @@
                         @endforeach
                     </div>
                 </div>
+
+
+                
                     {{-- <div class="popular__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">

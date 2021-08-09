@@ -115,7 +115,7 @@ class genrecontroller extends Controller
                     ->update([
                         "genre" => $request["genre"]        
         ]); 
-        return redirect('/anime');
+        return redirect('/genre');
     }
 
     /**
@@ -126,8 +126,8 @@ class genrecontroller extends Controller
      */
     public function destroy($id)
     {
-        $genre = DB::table('genre')->where('id', $id)->first();
-        $genre->delete();
-        return redirect()->route('/anime');
+        
+        $query = DB::table('genre')->where('id', $id)->delete();
+        return redirect('/genre');
     }
 }
